@@ -1,11 +1,11 @@
 # META
 - id = 23045401056
-- version = 1 
+- version = 2 
 - category = after
 
 # CODE
 ```
-[a, b, c, d, e] = random_subset(5, 3, 12);
+[a, b, c, d, e] = shuffled_subset(5, 3, 12);
 ```
 # PL
 
