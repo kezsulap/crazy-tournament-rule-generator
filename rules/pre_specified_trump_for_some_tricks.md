@@ -5,7 +5,7 @@
 
 # CODE
 ```
-let [a, b, c, d, e] = random_subset(5, 3, 12);
+[a, b, c, d, e] = random_subset(5, 3, 12);
 ```
 # PL
 

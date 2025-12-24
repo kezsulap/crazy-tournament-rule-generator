@@ -6,7 +6,7 @@
 
 # CODE
 ```
-let [a, b, c, d] = random_order([CLUB, DIAMOND, HEART, SPADE])
+[a, b, c, d] = random_order([CLUB, DIAMOND, HEART, SPADE])
 ```
 
 # EN 
