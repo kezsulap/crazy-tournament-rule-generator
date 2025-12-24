@@ -11,8 +11,8 @@ let [a, b, c, d] = random_order([CLUB, DIAMOND, HEART, SPADE])
 
 # EN 
 
-On every trick where the suit lead is $(a) or $(b) cards are played in clockwise order, on every trick where $(c) or $(d) is lead in counterclockwise.
+On every trick where the suit lead is &(a) or &(b) cards are played in clockwise order, on every trick where &(c) or &(d) is lead in counterclockwise.
 
 # PL
 
-W lewach, w których kolorem wyjścia jest $(a), lub $(b) karty dokładane są w kolejności zgodnej z ruchem wskazówek zegara, w lewach, w których kolorem wyjścia jest $(c) lub $(d) przeciwnie
+W lewach, w których kolorem wyjścia jest &(a), lub &(b) karty dokładane są w kolejności zgodnej z ruchem wskazówek zegara, w lewach, w których kolorem wyjścia jest &(c) lub &(d) przeciwnie
