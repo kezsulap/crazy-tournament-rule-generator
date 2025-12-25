@@ -29,7 +29,11 @@ function split_into_sections(raw_markdown) {
 		return line;
 	}
 	for (let line of raw_markdown.split('\n')) {
-		if (line.trim() == '') continue;
+		if (line.trim() == '') {
+			if (current_section_name !== undefined)
+				current_section_content.push(line);
+			continue;
+		}
 		if (line.substr(0, 2) == '# ') {
 			let title = line.substr(2).trim();
 			if (current_section_name !== undefined) {
@@ -176,6 +180,14 @@ function splitWithMatches(str, regex) {
 }
 
 
+class language_version {
+	constructor(content, lang_strings) {
+		this.content = content;
+		this.lang_strings = lang_strings;
+	}
+};
+
+
 
 class rule {
 	constructor(raw_markdown) {
@@ -209,12 +221,46 @@ class rule {
 			this.code = code_content.join('\n');
 		}
 		this.lang = new Map();
+		let previous_lang_dict = undefined;
+		let previous_lang_name = undefined;
 		for (let [section_name, section_content] of sections) if (section_name != 'META' && section_name != 'CODE') {
 			if (this.lang.has(section_name)) throw 'Duplicate section for language ' + section_name;
-			let lang_content = section_content.join('\n');
-			this.lang.set(section_name, lang_content);
+			let section_raw_content = [];
+			let defined_phrases = new Map();
+			for (let line of section_content) {
+				if (/^- DEFINE `.+`/.test(line)) {
+					let segments = line.split('`');
+					let variable_name = segments[1];
+					let variable_expansion = segments[2];
+					if (defined_phrases.has(variable_name)) {
+						throw 'Duplicate phrase definition for ' + variable_name + ' in language ' + section_name;
+					}
+					defined_phrases.set(variable_name, variable_expansion);
+				}
+				else {
+					section_raw_content.push(line);
+				}
+			}
+			let lang_content = section_raw_content.join('\n');
+			this.lang.set(section_name, new language_version(lang_content, defined_phrases));
 			if (this.code === undefined && variable_regex.test(lang_content)) {
 				throw 'Found a variable in lang ' + section_name + ' while no CODE section'
+			}
+			if (previous_lang_dict !== undefined) {
+				for (let x of defined_phrases.keys()) {
+					if (!previous_lang_dict.has(x)) {
+						throw 'Phrase ' + x + ' defined for language ' + section_name + ', but not for ' + previous_lang_name;
+					}
+				}
+				for (let x of previous_lang_dict.keys()) {
+					if (!defined_phrases.has(x)) {
+						throw 'Phrase ' + x + ' defined for language ' + previous_lang_name + ', but not for ' + section_name;
+					}
+				}
+			}
+			else {
+				previous_lang_dict = defined_phrases;
+				previous_lang_name = section_name;
 			}
 		}
 	}
@@ -228,7 +274,7 @@ class rule {
 		}
 		if (content === undefined) {
 			for (let [lang, this_content] of this.lang) {
-				content = this_content;
+				content = this_content.content;
 				break;
 			}
 		}
@@ -252,6 +298,9 @@ class rule {
 			function bid_to_str(x) {
 				return (1 + Math.floor((x - 1) / 5)) + '' + DENOMINATIONS[(x - 1) % 5];
 			}
+			function LANG_PHRASES(phrase_id) {
+				return content.lang_strings.get(phrase_id);
+			}
 			let CLUB = '♣';
 			let DIAMOND = '♦';
 			let HEART = '♥';
@@ -260,8 +309,8 @@ class rule {
 			let PLAYERS = ['N', 'E', 'S', 'W'];
 			let SUITS = [CLUB, DIAMOND, HEART, SPADE];
 			let DENOMINATIONS = [CLUB, DIAMOND, HEART, SPADE, 'NT']
-			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, Math});
-			let split = splitWithMatches(content, variable_regex);
+			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math});
+			let split = splitWithMatches(content.content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
 				let variable_name = split[i].substr(2, split[i].length - 3).trim();
 				if (!variables.has(variable_name)) {
@@ -271,7 +320,7 @@ class rule {
 			}
 			return split.join('');
 		}
-		return content;
+		return content.content;
 	}
 };
 
