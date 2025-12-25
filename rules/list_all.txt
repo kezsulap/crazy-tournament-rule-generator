@@ -1,0 +1,4 @@
+clockwise_counterclockwise_alternate.md
+pre_specified_trump_for_some_tricks.md
+two_bids_per_player.md
+two_suit_clockwise_two_counterclockwise.md
