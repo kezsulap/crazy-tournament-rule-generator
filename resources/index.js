@@ -270,7 +270,7 @@ function render(seed, lang) {
 			try {
 				let content = rules[rules.length - 1].render(seed, lang);
 				let content_node = document.createElement('div');
-				content_node.innerText = content;
+				content_node.innerHTML = marked.parse(content);
 				rules_div.appendChild(content_node);
 			}
 			catch (e) {
