@@ -10,3 +10,8 @@
 .spade {
 	color: blue;
 }
+.board_id {
+  color: -webkit-link;
+  text-decoration: underline;
+  cursor: pointer;
+}

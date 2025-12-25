@@ -350,7 +350,12 @@ function parse_suits(s) {
 	return split.join('');
 }
 
-function render(seed, lang) {
+function reveal_rule(event) {
+	let node = event.currentTarget;
+	node.parentElement.children[1].style.display = '';
+}
+
+function render(count, seed, lang) {
 	if (hardcoded !== undefined) {
 		let rules_div = document.querySelector('#rules');
 		let rules = [];
@@ -362,24 +367,36 @@ function render(seed, lang) {
 				document.querySelector('h1').innerText = 'Error when parsing filename: ' + filename + ": " + e;
 				throw e;
 			}
+		}
+		let rng = new Random(seed);
+		let ids = rng.balanced_sequence(count, 0, rules.length - 1);
+		for (let i = 0; i < count; ++i) {
 			try {
-				let content = rules[rules.length - 1].render(seed, lang);
+				let content = rules[ids[i]].render(rng.random_int(0, BigInt("1000000000000")), lang);
 				let content_node = document.createElement('div');
-				content_node.innerHTML = parse_suits(marked.parse(content));
+				let board_id = document.createElement('div');
+				board_id.classList.add('board_id');
+				board_id.innerHTML = 'Board ' + (i + 1) + ' (' + rules[ids[i]].category  + ')';
+				board_id.addEventListener('click', reveal_rule);
+				let rule_content = document.createElement('div');
+				rule_content.innerHTML = parse_suits(marked.parse(content));
+				rule_content.style.display = 'none';
+				content_node.appendChild(board_id);
+				content_node.appendChild(rule_content);
 				rules_div.appendChild(content_node);
 			}
 			catch (e) {
-				document.querySelector('h1').innerText = 'Error when rendering filename: ' + filename + ": " + e;
+				document.querySelector('h1').innerText = 'Error when rule number ' + i + ": " + e;
 				throw e;
 			}
 		}
-		console.log(rules);
 	}
 }
 
 function handleSubmit() {
 	document.querySelector('#menu').style.display = 'none';
-	render(document.querySelector('#seed').value, document.querySelector('#lang').value);
+	// render(document.querySelector('#seed').value, document.querySelector('#lang').value);
+	render(document.querySelector('#number_of_boards').value, document.querySelector('#seed').value, 'EN'); //language is temporarily disabled until more rules are translated to Polish
 }
 
 function init() {
