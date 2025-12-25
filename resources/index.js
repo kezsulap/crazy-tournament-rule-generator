@@ -210,7 +210,7 @@ class rule {
 	}
 	render(seed, language) {
 		let content = undefined;
-		for (let lang_tried in [language, 'EN']) {
+		for (let lang_tried of [language, 'EN']) {
 			if (this.lang.has(lang_tried)) {
 				content = this.lang.get(lang_tried);
 				break;
