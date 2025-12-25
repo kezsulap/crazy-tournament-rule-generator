@@ -32,7 +32,7 @@ for (let suit = 0; suit < 4; ++suit) {
     for (let x of rest_set) ranks_array.push(x);
     ranks_array = random_order(ranks_array);
     for (let i = 0; i < len; ++i) {
-        cards_lead[spots[suit][i]] = [CLUB, DIAMOND, HEART, SPADE][suit] + RANKS[ranks_array[i]];
+        cards_lead[spots[suit][i]] = [CLUB, DIAMOND, HEART, SPADE][suit] + '{' + RANKS[ranks_array[i]] + '}';
     }
 }
 
