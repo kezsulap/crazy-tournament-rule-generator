@@ -112,6 +112,16 @@ class Random {
 	shuffled_subset(count, low, high) {
 		return this.random_order(this.random_subset(count, low, high));
 	}
+	balanced_sequence(length, low, high) {
+		let ret = [];
+		let subset_size = (high - low) + 1;
+		let full = Math.floor(length / subset_size);
+		let rest = length % subset_size;
+		for (let i = low; i <= high; ++i) for (let j = 0; j < full; ++j) ret.push(i);
+		let rest_subset = this.random_subset(rest, low, high);
+		for (let x of rest_subset) ret.push(x);
+		return this.random_order(ret);
+	}
 }
 
 function object_to_map(x) {
@@ -236,12 +246,15 @@ class rule {
 			function random_order(iterable) {
 				return rng.random_order(iterable);
 			}
+			function balanced_sequence(length, low, high) {
+				return rng.balanced_sequence(length, low, high);
+			}
 			let CLUB = '♣';
 			let DIAMOND = '♦';
 			let HEART = '♥';
 			let SPADE = '♠';
 			let RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
-			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, CLUB, DIAMOND, HEART, SPADE, RANKS, Math});
+			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, CLUB, DIAMOND, HEART, SPADE, RANKS, Math});
 			let split = splitWithMatches(content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
 				let variable_name = split[i].substr(2, split[i].length - 3).trim();
