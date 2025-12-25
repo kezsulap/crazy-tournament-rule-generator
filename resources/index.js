@@ -249,6 +249,9 @@ class rule {
 			function balanced_sequence(length, low, high) {
 				return rng.balanced_sequence(length, low, high);
 			}
+			function bid_to_str(x) {
+				return (1 + Math.floor((x - 1) / 5)) + '' + DENOMINATIONS[(x - 1) % 5];
+			}
 			let CLUB = '♣';
 			let DIAMOND = '♦';
 			let HEART = '♥';
@@ -257,7 +260,7 @@ class rule {
 			let PLAYERS = ['N', 'E', 'S', 'W'];
 			let SUITS = [CLUB, DIAMOND, HEART, SPADE];
 			let DENOMINATIONS = [CLUB, DIAMOND, HEART, SPADE, 'NT']
-			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, Math});
+			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, Math});
 			let split = splitWithMatches(content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
 				let variable_name = split[i].substr(2, split[i].length - 3).trim();
