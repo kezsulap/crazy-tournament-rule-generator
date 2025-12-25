@@ -5,6 +5,7 @@ clubs_blue_suit.md
 contracts_list.md
 cycle_suits_lead.md
 defenders_must_play_trumps.md
+different_contracts_ranking.md
 draw_until_13_during_play.md
 each_defender_one_suit_face_up_dummy_2.md
 each_player_lays_down_2_suits.md
