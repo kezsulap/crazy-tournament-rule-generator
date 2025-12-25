@@ -241,7 +241,7 @@ class rule {
 			let HEART = '♥';
 			let SPADE = '♠';
 			let RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
-			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, CLUB, DIAMOND, HEART, SPADE, RANKS});
+			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, CLUB, DIAMOND, HEART, SPADE, RANKS, Math});
 			let split = splitWithMatches(content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
 				let variable_name = split[i].substr(2, split[i].length - 3).trim();
