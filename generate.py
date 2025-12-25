@@ -41,17 +41,21 @@ def extract_directory(revision, src_dir, destination_dir):
 def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--code-branch', '-c', action='store_true')
+	parser.add_argument('--rules_dir', '-r')
 
 	args = parser.parse_args();
 
-	if args.code_branch:
-		rules_dir = 'rules'
-		rules_version = None
+	if args.rules_dir is not None:
+		rules_dir = args.rules_dir
 	else:
-		rules_dir = tempfile.mkdtemp()
-		rules_version = 'rules'
-		extract_directory(rules_version, 'rules', rules_dir)
-	
+		if args.code_branch:
+			rules_dir = 'rules'
+			rules_version = None
+		else:
+			rules_dir = tempfile.mkdtemp()
+			rules_version = 'rules'
+			extract_directory(rules_version, 'rules', rules_dir)
+
 	hardcoded = []
 
 	for file in os.listdir(rules_dir): #TODO: support subdirectories, images etc.
