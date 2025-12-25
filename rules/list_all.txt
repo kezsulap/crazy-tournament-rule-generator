@@ -5,6 +5,7 @@ clubs_blue_suit.md
 contracts_list.md
 cycle_suits_lead.md
 defenders_must_play_trumps.md
+draw_until_13_during_play.md
 each_defender_one_suit_face_up_dummy_2.md
 each_player_lays_down_2_suits.md
 exact_number_of_tricks.md
@@ -17,6 +18,7 @@ KQJ_equal.md
 lead_after_partner_won.md
 lead_after_partner_won_with_odd_even.md
 lead_for_contract.md
+lead_three_suits.md
 limited_jumping.md
 mixed_suit_new_suits.md
 no_returning_suit.md
