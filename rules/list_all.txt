@@ -1,5 +1,7 @@
+bidding_hops_turns_etc_on_each_denomination.md
 cards_seen_for_all_but_me.md
 clockwise_counterclockwise_alternate.md
+clubs_blue_suit.md
 contracts_list.md
 each_defender_one_suit_face_up_dummy_2.md
 each_player_lays_down_2_suits.md
@@ -10,11 +12,14 @@ KQJ_equal.md
 lead_after_partner_won.md
 lead_for_contract.md
 limited_jumping.md
+mixed_suit_new_suits.md
 no_returning_suit.md
+odd_before_even_or_the_other_way_round.md
 one_random_card_missing.md
 one_revoke_per_player.md
 opening_leader_becomes_dummy.md
 pre_specified_trump_for_some_tricks.md
+rows_face_down.md
 two_bids_per_player.md
 two_suit_clockwise_two_counterclockwise.md
 up_or_down.md
