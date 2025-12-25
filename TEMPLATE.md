@@ -1,6 +1,6 @@
 # META
 - id = (insert a random number when creating, don't change it throughout the existence of the rule)
-- version = 1 (insert a random number when creating, and update to a new random number only after making a substantive change to the rule, including change to the code which could make it construct different rule with the same seed, keep it the same when fixing typos, claryfing the intent which was the same in the previous version etc.)
+- version = 1 (start with 1 and only increment after making a substantive change to the rule, including change to the code which could make it construct different rule with the same seed, keep it the same when fixing typos, claryfing the intent which was the same in the previous version etc.)
 - category = (before/after)
 - similar rules = 1,10,100 (ids, or remove completely if there are none)
 
