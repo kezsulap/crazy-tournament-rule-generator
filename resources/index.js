@@ -324,6 +324,32 @@ class rule {
 	}
 };
 
+function parse_suits(s) {
+	let suit_with_cards = /(♣|♦|♥|♠|!c|!d|!h|!s){[AKQJT98765432]+}/;
+	let raw_suit_regex = /♣|♦|♥|♠|!c|!d|!h|!s/;
+	let split = splitWithMatches(s, suit_with_cards);
+	function replace_exclam_with_suit_symbol(s) {
+		return s.replace('!c', '♣').replace('!d', '♦').replace('!h', '♥').replace('!s', '♠');
+	}
+	function wrap_with_span(s) {
+		if (s.search('♣') != -1) return '<span class="club">' + s + '</span>';
+		if (s.search('♦') != -1) return '<span class="diamond">' + s + '</span>';
+		if (s.search('♥') != -1) return '<span class="heart">' + s + '</span>';
+		if (s.search('♠') != -1) return '<span class="spade">' + s + '</span>';
+		return s;
+	}
+	for (let i = 1; i < split.length; i += 2) {
+		split[i] = wrap_with_span(replace_exclam_with_suit_symbol(split[i].replace('{', '').replace('}', '')));
+	}
+	for (let i = 0; i < split.length; i += 2) {
+		let subsplit = splitWithMatches(split[i], raw_suit_regex);
+		for (let j = 1; j < subsplit.length; j += 2)
+			subsplit[j] = wrap_with_span(subsplit[j]);
+		split[i] = subsplit.join('');
+	}
+	return split.join('');
+}
+
 function render(seed, lang) {
 	if (hardcoded !== undefined) {
 		let rules_div = document.querySelector('#rules');
@@ -339,7 +365,7 @@ function render(seed, lang) {
 			try {
 				let content = rules[rules.length - 1].render(seed, lang);
 				let content_node = document.createElement('div');
-				content_node.innerHTML = marked.parse(content);
+				content_node.innerHTML = parse_suits(marked.parse(content));
 				rules_div.appendChild(content_node);
 			}
 			catch (e) {
