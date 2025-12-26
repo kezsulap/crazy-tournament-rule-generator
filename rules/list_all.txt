@@ -39,3 +39,4 @@ scrooge.md
 two_bids_per_player.md
 two_suit_clockwise_two_counterclockwise.md
 up_or_down.md
+voids.md
