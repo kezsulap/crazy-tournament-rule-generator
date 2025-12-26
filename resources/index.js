@@ -212,8 +212,15 @@ class rule {
 		} else throw 'missing category in keyword section';
 		if (meta_args.has('similar rules')) this.similar_rules = meta_args.get('similar rules').split(',').map((x) => x.trim());
 		else this.similar_rules = [];
+		if (meta_args.has('special_dealing')) {
+			let value = meta_args.get('special_dealing');
+			if (value == 'true') this.special_dealing = true;
+			else if (value == 'false') this.special_dealing = false;
+			else throw 'Expected special_dealing to be either \'true\' or \'false\', got :' + value;
+		}
+		else this.special_dealing = false;
 		for (const [key, _] of meta_args)
-			if (!['id', 'version', 'category', 'similar rules'].includes(key))
+			if (!['id', 'version', 'category', 'similar rules', 'special_dealing'].includes(key))
 				throw 'Unknown key ' + key + ' in META section';
 		this.code = undefined;
 		if (sections.has('CODE')) {
@@ -383,7 +390,7 @@ function render(count, seed, lang) {
 				let content_node = document.createElement('div');
 				let board_id = document.createElement('div');
 				board_id.classList.add('board_id');
-				board_id.innerHTML = 'Board ' + (i + 1) + ' (' + rules[ids[i]].category  + ')';
+				board_id.innerHTML = 'Board ' + (i + 1) + ' (' + rules[ids[i]].category + (rules[ids[i]].special_dealing ? ', requires dealing the cards in a special way' : '') + ')';
 				board_id.addEventListener('click', reveal_rule);
 				let rule_content = document.createElement('div');
 				rule_content.innerHTML = parse_suits(marked.parse(content));
