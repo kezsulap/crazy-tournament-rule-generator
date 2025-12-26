@@ -126,6 +126,10 @@ class Random {
 		for (let x of rest_subset) ret.push(x);
 		return this.random_order(ret);
 	}
+	random_choice(iterable) {
+		let array = Array.from(iterable);
+		return array[this.random_int(0, array.length - 1)];
+	}
 }
 
 function object_to_map(x) {
@@ -295,6 +299,9 @@ class rule {
 			function balanced_sequence(length, low, high) {
 				return rng.balanced_sequence(length, low, high);
 			}
+			function random_choice(iterable) {
+				return rng.random_choice(iterable);
+			}
 			function bid_to_str(x) {
 				return (1 + Math.floor((x - 1) / 5)) + '' + DENOMINATIONS[(x - 1) % 5];
 			}
@@ -309,7 +316,7 @@ class rule {
 			let PLAYERS = ['N', 'E', 'S', 'W'];
 			let SUITS = [CLUB, DIAMOND, HEART, SPADE];
 			let DENOMINATIONS = [CLUB, DIAMOND, HEART, SPADE, 'NT']
-			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math});
+			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, random_choice, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math});
 			let split = splitWithMatches(content.content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
 				let variable_name = split[i].substr(2, split[i].length - 3).trim();
