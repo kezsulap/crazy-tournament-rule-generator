@@ -42,6 +42,7 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--code-branch', '-c', action='store_true')
 	parser.add_argument('--rules_dir', '-r')
+	parser.add_argument('--files', '-f', nargs='*')
 
 	args = parser.parse_args();
 
@@ -58,9 +59,14 @@ def main():
 
 	hardcoded = []
 
-	for file in os.listdir(rules_dir): #TODO: support subdirectories, images etc.
+	if args.files:
+		files = args.files
+	else:
+		files = [os.path.join(rules_dir, file) for file in os.listdir(rules_dir)]
+
+	for file in files: #TODO: support subdirectories, images etc.
 		if file.endswith('.md'):
-			with open(os.path.join(rules_dir, file), 'r') as f:
+			with open(file, 'r') as f:
 				hardcoded.append(f'[{escape(file)}, {escape(f.read())}]')
 
 	hardcoded_content = "hardcoded=[" + ",".join(hardcoded) + "]"
