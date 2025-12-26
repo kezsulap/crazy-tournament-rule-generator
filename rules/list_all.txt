@@ -25,6 +25,7 @@ lead_for_contract.md
 lead_three_suits.md
 limited_jumping.md
 mixed_suit_new_suits.md
+no_ducking_in_4th_seat.md
 no_returning_suit.md
 no_rule.md
 no_tricks.md
