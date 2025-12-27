@@ -253,7 +253,7 @@ class rule {
 			let section_content = sections.get('CODE');
 			let code_content = [];
 			for (let x of section_content) //TODO: do something more resistant to invalid CODE section
-				if (x.trim() != '```')
+				if (!x.trim().startsWith('```'))
 					code_content.push(x);
 			this.code = code_content.join('\n');
 		}
