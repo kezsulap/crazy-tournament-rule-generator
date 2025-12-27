@@ -6,3 +6,7 @@
 # EN 
 
 Each partnership is allowed to make at most one bid at 1 level, at most one at 2 level etc.
+
+# PL
+
+Każda z par może zalicytować co najwyżej jedną odzywkę na poziomie 1, co najwyżej jedną na poziomie 2 itd.

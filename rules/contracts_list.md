@@ -65,7 +65,7 @@ begins as usual:
 
 # PL
 
-Możliwa jest rozgrywka jedynie poniższych kontraktów, zaczynajac od dealera, idąc zgodnie z ruchem wskazówek zegara gracze wykreślają po jednym kontrakcie, kiedy zostanie tylko jeden kontrakt staje się on
+Możliwa jest rozgrywka jedynie poniższych kontraktów, zaczynając od dealera, idąc zgodnie z ruchem wskazówek zegara gracze wykreślają po jednym kontrakcie, kiedy zostanie tylko jeden kontrakt staje się on
 kontraktem ostatecznym i przystępujemy do rozgrywki zgodnie ze standardowymi zasadami:
 
 &(contracts)

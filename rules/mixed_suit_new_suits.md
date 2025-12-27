@@ -96,7 +96,7 @@ In this board the following suits can be bid:
 &(table)
 
 # PL
-- DEFINE `suit_names` jabłka pomarańcze arbusy banany truskawki jagody winogrona awokada pomidory cytryny dynie kokosy
+- DEFINE `suit_names` jabłka pomarańcze arbuzy banany truskawki jagody winogrona awokada pomidory cytryny dynie kokosy
 - DEFINE `minor_suit` młodszy
 - DEFINE `major_suit` starszy
 - DEFINE `trump_suit` kolor atutowy

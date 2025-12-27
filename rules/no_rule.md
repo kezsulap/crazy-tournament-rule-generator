@@ -6,3 +6,7 @@
 # EN 
 
 There is no extra rule in board. The play phase continues as normal.
+
+# PL
+
+W tym rozdaniu nie ma dodatkowej regułki, rozgrywka przebiega normalnie.

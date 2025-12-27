@@ -18,3 +18,14 @@ Whenever a player with any cards left face-up is to play a card the procedure go
     - If they have a card face-up of the same suit, their partner selects one
     - Otherwise if they have any cards of the suit lead in their closed hand they select one of them themselves
     - Otherwise they announce they don't have a card to follow and their partner either selects a face-up card or orders them to select a card from their closed hand
+
+# PL 
+
+Po pierwszym wiście wistujący wykłada przed siebie wszystkie swoje &(suit1), gracz, który miał być dziadkiem &(suit2) i &(suit3), drugi obrońca &(suit4).
+
+Kiedy gracz mający jakiekolwiek karty ma zagrać kartę procedura jest następująca:
+- Jeśli gracz ten wychodzi jego partner albo wybiera jedną z odkrytych kart, albo nakazuje partnerowi samemu wybranie jednej z zakrytych
+- Jeśli gracz ma dołożyć kolejną kartę w lewie
+    - Jeśli wciąż ma na stole kartę w kolorze wyjścia jego partner wybiera jedną z nich
+    - Jeśli nie, ale ma kartę w kolorze wyjścia w ręku sam wybiera jedną z nich
+    - Jeśli nie ma do koloru ani w ręku ani w kartach odkrytych mówi, że nie ma i jego partner albo wybiera jedną z kart odkrytych, albo nakazuje mu samemu wybranie jednej z kart z ręki.

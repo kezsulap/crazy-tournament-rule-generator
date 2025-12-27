@@ -147,3 +147,13 @@ During the bidding contracts can be bid using either cards from bidding boxes or
 Over a contract bid with cards from bidding box it is allowed bid the same contract with a card from hand.
 
 Only contracts bid with card from hand and contracts that are doubled or redoubled are played, others are scored 0 tricks for declarer without play phase.
+
+# PL
+
+Podczas licytacji można licytować kartkami z bidding-boxu oraz kartami z ręki zgodnie z poniższą tabelą:
+
+&(table)
+
+Można przelicytować kontrakt zalicytowany z bidding-boxu tym samym kontraktem zalicytowanym kartą.
+
+Rozgrywa się jedynie kontrakty zalicytowane kartą z ręki, oraz kontrakty z kontrą, rekontrą, na pozostałe bez gry zapisuje się 0 lew dla rozgrywającego.

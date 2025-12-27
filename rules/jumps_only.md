@@ -20,3 +20,8 @@ example_top = bid_to_str(35 - minimum_skipped + 1)
 
 Except for the first contract every other bid must be higher then the previous one by at least &(minimum_skipped), e.g. after &(example_1_low) the lowest allowed bid is &(example_1_high), after &(example_2_low) it's &(example_2_high),
        after a bid of &(example_top) or higher no other bids can be made, only passes, doubles and redoubles are allowed.
+
+# PL
+
+Oprócz pierwszego zalicytowanego kontraktu każdy kolejny musi być wyższy od poprzedniego o co najmniej &(minimum_skipped), przykładowo po &(example_1_low) można zalicytować co najmniej &(example_1_high), po &(example_2_low)
+    co najmniej &(example_2_high), po &(example_top) lub wyższym nie można już zalicytować żadnego innego kontraktu, jedynie pasy, kontry i rekontry.

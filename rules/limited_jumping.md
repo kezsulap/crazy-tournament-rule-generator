@@ -22,3 +22,8 @@ example_top = bid_to_str(35 - maximum_skipped);
 The first bid contract can be at most &(highest_start), every other can be at most &(maximum_skipped) higher then the previous one
 e.g. after &(example_1_low) the highest allowed bid is &(example_1_high), after &(example_2_low) it's &(example_2_high),
        after a bid of &(example_top) or higher all bids up to 7NT are allowed.
+
+# PL
+Pierwszy zalicytowany kontrakt nie może być wyższy niż &(highest_start), każdy kolejny musi być o co najwyżej &(maximum_skipped) wyższy od poprzedniego.
+Przykładowo po &(example_1_low) można zalicytować co najwyżej &(example_1_high), po &(example_2_low) co najwyżej &(example_2_high), po &(example_top) lub wyższym można zalicytować
+dowolny wyższy kontrakt do 7NT włącznie.

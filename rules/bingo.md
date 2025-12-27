@@ -55,3 +55,12 @@ Declarer scores +1 for each column or row or main diagonal with all 5 squares wo
 calculate the result.
 
 Players are allowed to have a printed copy of the bingo board and mark all the cards gone whether they're won by declarer or defenders.
+
+# PL
+
+&(table)
+
+Środkowe pole liczy się jako wygrane przez rozgrywającego, każde pozostałe jest liczone jako wygrane przez rozgrywającego lub przez obrońców zależnie kto wziął lewę zawierającą dane pole.
+
+Rozgrywający dostaje +1 za każdą kolumnę, każdy wiersz i każdą z głównych przekątnych, w której wygrał wszystkie 5 pól, oraz +1 za wzięcie co najmniej tylu lew ile zostało wylicytowane. Tak otrzymana suma punktów jest potraktowana
+jako liczba lew i na jej podstawie oblicza się wynik rozdania.

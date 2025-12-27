@@ -30,3 +30,6 @@ for (let i = 0; i < 35; ++i) {
 The contracts ranking goes as follows:
 &(ranking)
 
+# PL
+W tym rozdaniu obowiązuje następujące starszeństwo kontraktów:
+&(ranking)

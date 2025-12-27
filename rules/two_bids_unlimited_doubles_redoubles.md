@@ -7,3 +7,8 @@
 # EN 
 
 Each player is allowed to make at most 2 bids throughout the bidding, passes doubles and redoubles are not limited.
+
+# PL
+
+Każdy gracz może zalicytować co najwyżej dwie odzywki przez całą licytację.
+Pasy, kontry i rekontry można licytować bez ograniczeń.
