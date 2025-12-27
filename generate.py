@@ -3,6 +3,7 @@ import shutil
 import os
 import argparse
 import tempfile
+import sys
 
 def escape(c):
 	c = c.replace('\\', '\\\\');
@@ -43,6 +44,7 @@ def main():
 	parser.add_argument('--code-branch', '-c', action='store_true')
 	parser.add_argument('--rules_dir', '-r')
 	parser.add_argument('--files', '-f', nargs='*')
+	parser.add_argument('--diff', '-d', action='store_true')
 
 	args = parser.parse_args();
 
@@ -59,7 +61,20 @@ def main():
 
 	hardcoded = []
 
-	if args.files:
+	if args.diff:
+		assert args.code_branch
+		output = subprocess.run(['git', 'status', '--porcelain'], check=True, capture_output=True, text=True).stdout
+		files = []
+		for line in output.split('\n'):
+			# status = line[:3]
+			filename = line[3:]
+			if filename.startswith('rules/') and filename.endswith('.md') and os.path.exists(filename):
+				files.append(filename)
+		if not files:
+			print('No changed or untracked files found in git', file=sys.stderr)
+			sys.exit(1);
+		print('Found:\n\t' + '\n\t'.join(files))
+	elif args.files:
 		files = args.files
 	else:
 		files = [os.path.join(rules_dir, file) for file in os.listdir(rules_dir)]
