@@ -14,6 +14,32 @@ function load(url) {
 	return xhr.responseText;
 }
 
+
+function xhrPromise(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.responseType = "text";
+
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(xhr.response);
+      } else {
+        reject(new Error(`HTTP ${xhr.status}`));
+      }
+    };
+
+    xhr.onerror = () => reject(new Error("Network error"));
+    xhr.send();
+  });
+}
+
+function fetchAll(urls) {
+  const requests = urls.map(xhrPromise);
+  return Promise.all(requests);
+}
+
+
 function split_into_sections(raw_markdown) {
 	let current_section_name = undefined;
 	let current_section_content = [];
@@ -414,16 +440,21 @@ function handleSubmit() {
 }
 
 function init() {
-	window.addEventListener('load', function() {
+	window.addEventListener('load', async function() {
 		if (hardcoded === undefined) {
 			let all_found = load('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/list_all.txt');
-			hardcoded = [];
+			let file_names = [], file_urls = [];
 			for (let file of all_found.split('\n')) {
 				file = file.trim();
 				if (file.length) {
-					hardcoded.push([file, load('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/' + file)]);
+					file_urls.push('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/' + file);
+					file_names.push(file);
 				}
 			}
+			let content = await fetchAll(file_urls);
+			hardcoded = [];
+			for (let i = 0; i < file_names.length; ++i)
+				hardcoded.push([file_names[i], content[i]]);
 		}
 	})
 }
