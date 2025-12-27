@@ -449,8 +449,7 @@ function render(count, seed, lang) {
 
 function handleSubmit() {
 	document.querySelector('#menu').style.display = 'none';
-	// render(document.querySelector('#seed').value, document.querySelector('#lang').value);
-	render(document.querySelector('#number_of_boards').value, document.querySelector('#seed').value, 'EN'); //language is temporarily disabled until more rules are translated to Polish
+	render(document.querySelector('#number_of_boards').value, document.querySelector('#seed').value, document.querySelector('#lang').value);
 }
 
 function init() {
