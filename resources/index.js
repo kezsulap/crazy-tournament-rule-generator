@@ -390,47 +390,61 @@ function parse_suits(s) {
 	return split.join('');
 }
 
-function reveal_rule(event) {
+function flip_rule_visible(event) {
 	let node = event.currentTarget;
-	node.parentElement.children[1].style.display = '';
+	let target_node = node.parentElement.children[1];
+	if (target_node.style.display == '') target_node.style.display = 'none';
+	else target_node.style.display = '';
+}
+
+function reveal_all() {
+	for (let x of document.querySelectorAll('.rule_content'))
+		x.style.display = '';
+}
+function hide_all() {
+	for (let x of document.querySelectorAll('.rule_content'))
+		x.style.display = 'none';
 }
 
 function render(count, seed, lang) {
-	if (hardcoded !== undefined) {
-		let rules_div = document.querySelector('#rules');
-		let rules = [];
-		for (let [filename, raw_rule_markdown] of hardcoded) {
-			try {
-				rules.push(new rule(raw_rule_markdown))
-			}
-			catch (e) {
-				document.querySelector('h1').innerText = 'Error when parsing filename: ' + filename + ": " + e;
-				throw e;
-			}
+	if (hardcoded === undefined) return;
+	let rules_div = document.querySelector('#rules');
+	let menu_div = document.querySelector('#rules_menu');
+	let rules = [];
+	for (let [filename, raw_rule_markdown] of hardcoded) {
+		try {
+			rules.push(new rule(raw_rule_markdown))
 		}
-		let rng = new Random(seed);
-		let ids = rng.balanced_sequence(count, 0, rules.length - 1);
-		for (let i = 0; i < count; ++i) {
-			try {
-				let content = rules[ids[i]].render(rng.random_int(0, BigInt("1000000000000")), lang);
-				let content_node = document.createElement('div');
-				let board_id = document.createElement('div');
-				board_id.classList.add('board_id');
-				board_id.innerHTML = 'Board ' + (i + 1) + ' (' + rules[ids[i]].category + (rules[ids[i]].special_dealing ? ', requires dealing the cards in a special way' : '') + ')';
-				board_id.addEventListener('click', reveal_rule);
-				let rule_content = document.createElement('div');
-				rule_content.innerHTML = parse_suits(marked.parse(content));
-				rule_content.style.display = 'none';
-				content_node.appendChild(board_id);
-				content_node.appendChild(rule_content);
-				rules_div.appendChild(content_node);
-			}
-			catch (e) {
-				document.querySelector('h1').innerText = 'Error when rule number ' + i + ": " + e;
-				throw e;
-			}
+		catch (e) {
+			document.querySelector('h1').innerText = 'Error when parsing filename: ' + filename + ": " + e;
+			throw e;
 		}
 	}
+	let rng = new Random(seed);
+	let ids = rng.balanced_sequence(count, 0, rules.length - 1);
+	for (let i = 0; i < count; ++i) {
+		try {
+			let content = rules[ids[i]].render(rng.random_int(0, BigInt("1000000000000")), lang);
+			let content_node = document.createElement('div');
+			let board_id = document.createElement('div');
+			board_id.classList.add('board_id');
+			board_id.classList.add(rules[ids[i]].category);
+			board_id.innerHTML = 'Board ' + (i + 1) + ' (' + rules[ids[i]].category + (rules[ids[i]].special_dealing ? ', requires dealing the cards in a special way' : '') + ')';
+			board_id.addEventListener('click', flip_rule_visible);
+			let rule_content = document.createElement('div');
+			rule_content.classList.add('rule_content');
+			rule_content.innerHTML = parse_suits(marked.parse(content));
+			rule_content.style.display = 'none';
+			content_node.appendChild(board_id);
+			content_node.appendChild(rule_content);
+			rules_div.appendChild(content_node);
+		}
+		catch (e) {
+			document.querySelector('h1').innerText = 'Error when rule number ' + i + ": " + e;
+			throw e;
+		}
+	}
+	menu_div.style.display = '';
 }
 
 function handleSubmit() {
