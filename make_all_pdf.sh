@@ -11,3 +11,10 @@ for x in $(ls rules | grep -v 'list_all.txt'); do
 		echo " Done";
 	fi
 done
+for x in $(ls pdf-rules); do
+	expected_md_file=rules/${x%pdf}md
+	if ! [ -f $expected_md_file ]; then
+		echo "Warning, file pdf-rules/$x doesn't match any existing .md file in rules directory" 
+	fi
+done
+pdftk pdf-rules/*.pdf cat output merged.pdf
