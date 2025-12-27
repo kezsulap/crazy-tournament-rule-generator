@@ -5,7 +5,7 @@
 - similar rules = 49782958657314
 
 # CODE
-```
+```javascript
 [a, b, c] = random_subset(3, 3, 12)
 ```
 

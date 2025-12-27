@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 shown = random_int(3, 5)
 rest = 13 - shown
 ```

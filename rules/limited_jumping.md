@@ -6,7 +6,7 @@
 
 
 # CODE
-```
+```javascript
 maximum_skipped = random_int(4, 7)
 
 highest_start = bid_to_str(maximum_skipped)

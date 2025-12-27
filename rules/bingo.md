@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 
 repeated = false;
 

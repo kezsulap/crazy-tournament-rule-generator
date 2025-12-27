@@ -5,7 +5,7 @@
 - similar rules = 2463158597859 
 
 # CODE
-```
+```javascript
 suit_names_list = LANG_PHRASES('suit_names').trim().split(' ')
 suit_symbols = ['🦋', '🐘', '🦒', '🐸', '🐢', '🦢', '🧸', '🦆', '🐈', '🐶']
 suits = []

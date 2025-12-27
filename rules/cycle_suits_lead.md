@@ -4,7 +4,7 @@
 - category = after
 
 # CODE
-```
+```javascript
 suit_id = random_int(0, 3);
 first_suit = SUITS[suit_id];
 second_suit = SUITS[(suit_id + 1) % 4];

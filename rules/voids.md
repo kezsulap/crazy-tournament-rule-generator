@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 count = random_int(6, 10);
 ```
 

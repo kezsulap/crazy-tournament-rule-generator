@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 denominations = []
 for (let i = 0; i < 5; ++i)
     for (let j = 0; j < 7; ++j)

@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 
 used_up = []
 for (let i = 0; i < 13; ++i) used_up.push([0, 0, 0, 0]);

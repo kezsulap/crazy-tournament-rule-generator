@@ -4,7 +4,7 @@
 - category = after
 
 # CODE
-```
+```javascript
 [suit1, suit2, suit3, suit4] = random_order(SUITS);
 ```
 

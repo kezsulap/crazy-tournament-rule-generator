@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 CONTRACTS_COUNT = 13
 DOUBLED = 3
 REDOUBLED = 2

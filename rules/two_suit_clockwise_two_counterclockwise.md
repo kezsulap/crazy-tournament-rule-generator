@@ -5,7 +5,7 @@
 - similar rules = 557555391507
 
 # CODE
-```
+```javascript
 [a, b, c, d] = random_order([CLUB, DIAMOND, HEART, SPADE])
 ```
 

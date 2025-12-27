@@ -5,7 +5,7 @@
 - similar rules = 6080035998141
 
 # CODE
-```
+```javascript
 suit_names_list = LANG_PHRASES('suit_names').trim().split(' ')
 type = random_int(0, 2)
 permutations = []

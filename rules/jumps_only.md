@@ -5,7 +5,7 @@
 - similar rules = 04752976108786265
 
 # CODE
-```
+```javascript
 minimum_skipped = random_int(2, 7)
 
 example_1_low = bid_to_str(1)

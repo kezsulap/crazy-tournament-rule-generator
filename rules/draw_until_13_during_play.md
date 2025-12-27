@@ -4,7 +4,7 @@
 - category = after
 
 # CODE
-```
+```javascript
 in_hand = random_int(6, 9)
 rest = 13 - in_hand
 ```

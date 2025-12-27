@@ -4,7 +4,7 @@
 - category = after
 
 # CODE
-```
+```javascript
 if (random_int(0, 1)) card_parity = LANG_PHRASES('odd_card')
 else card_parity = LANG_PHRASES('even_card')
 ```

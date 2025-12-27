@@ -4,7 +4,7 @@
 - category = after
 
 # CODE
-```
+```javascript
 count = random_int(5, 8)
 remaining = 13 - count
 ```

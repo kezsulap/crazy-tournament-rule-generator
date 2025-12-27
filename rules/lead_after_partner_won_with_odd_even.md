@@ -5,7 +5,7 @@
 - similar rules = 1275320882719
 
 # CODE
-```
+```javascript
 if (random_int(0, 1)) {
     me_continue = LANG_PHRASES('odd');
     partner_continue = LANG_PHRASES('even')

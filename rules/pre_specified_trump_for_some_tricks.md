@@ -4,7 +4,7 @@
 - category = after
 
 # CODE
-```
+```javascript
 [a, b, c, d, e] = shuffled_subset(5, 3, 12);
 ```
 # PL

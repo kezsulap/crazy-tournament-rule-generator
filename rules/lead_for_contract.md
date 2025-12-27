@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 suit_excluded = []
 for (let i = 0; i < 36; ++i) suit_excluded.push(i % 4);
 suit_excluded = random_order(suit_excluded);
