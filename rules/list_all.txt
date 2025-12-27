@@ -25,15 +25,18 @@ lead_for_contract.md
 lead_three_suits.md
 limited_jumping.md
 mixed_suit_new_suits.md
+mutual_neutralization.md
 no_ducking_in_4th_seat.md
 no_returning_suit.md
 no_rule.md
 no_tricks.md
 odd_before_even_or_the_other_way_round.md
+one_card_per_rank.md
 one_random_card_missing.md
 one_revoke_per_player.md
 opening_leader_becomes_dummy.md
 pair_in_trick.md
+phantom_trick.md
 play_only_doubled_and_high.md
 presents_on_bid.md
 pre_specified_trump_for_some_tricks.md
@@ -42,6 +45,7 @@ rudolf_red_suits.md
 scrooge.md
 show_after_each_bid.md
 two_bids_per_player.md
+two_bids_unlimited_doubles_redoubles.md
 two_suit_clockwise_two_counterclockwise.md
 up_or_down.md
 voids.md
