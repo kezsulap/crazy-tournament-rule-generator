@@ -48,5 +48,6 @@ show_after_each_bid.md
 two_bids_per_player.md
 two_bids_unlimited_doubles_redoubles.md
 two_suit_clockwise_two_counterclockwise.md
+two_trump_suits.md
 up_or_down.md
 voids.md
