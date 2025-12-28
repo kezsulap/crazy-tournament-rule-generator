@@ -218,6 +218,44 @@ class language_version {
 };
 
 
+function vulnerability(i) {
+	return ['None', 'NS', 'EW', 'All'][((i - 1) + ((i - 1) >> 2)) & 3];
+}
+
+function NS_vulnerable(i) {
+	let vul = vulnerability(i);
+	return vul == 'NS' || vul == 'All';
+}
+
+function EW_vulnerable(i) {
+	let vul = vulnerability(i);
+	return vul == 'EW' || vul == 'All';
+}
+
+function dealer(i) {
+	return ['W', 'N', 'E', 'S'][i & 3];
+}
+
+function dealer_vulnerable(i) {
+	if (dealer(i) == 'E' || dealer(i) == 'W') return EW_vulnerable(i);
+	return NS_vulnerable(i);
+}
+
+function dealers_opps_vulnerable(i) {
+	if (dealer(i) == 'E' || dealer(i) == 'W') return NS_vulnerable(i);
+	return EW_vulnerable(i);
+}
+
+function dealer_vulnerability(i) {
+	if (dealer_vulnerable(i)) {
+		if (dealers_opps_vulnerable(i)) return 'All';
+		return 'Unfavourable';
+	}
+	else {
+		if (dealers_opps_vulnerable(i)) return 'Favourable';
+		return 'None';
+	}
+}
 
 class rule {
 	constructor(raw_markdown) {
