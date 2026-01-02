@@ -16,27 +16,27 @@ function load(url) {
 
 
 function xhrPromise(url) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.responseType = "text";
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", url);
+		xhr.responseType = "text";
 
-    xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(xhr.response);
-      } else {
-        reject(new Error(`HTTP ${xhr.status}`));
-      }
-    };
+		xhr.onload = () => {
+			if (xhr.status >= 200 && xhr.status < 300) {
+				resolve(xhr.response);
+			} else {
+				reject(new Error(`HTTP ${xhr.status}`));
+			}
+		};
 
-    xhr.onerror = () => reject(new Error("Network error"));
-    xhr.send();
-  });
+		xhr.onerror = () => reject(new Error("Network error"));
+		xhr.send();
+	});
 }
 
 function fetchAll(urls) {
-  const requests = urls.map(xhrPromise);
-  return Promise.all(requests);
+	const requests = urls.map(xhrPromise);
+	return Promise.all(requests);
 }
 
 
@@ -100,10 +100,10 @@ const variable_regex = /\&\([^)]*\)/;
 function splitmix64(x) {
 	let mod = BigInt(1) << BigInt(64);
 	x = BigInt(x);
-  x = (x + BigInt('0x9e3779b97f4a7c15')) % mod;
-  x = (x ^ (x >> BigInt(30))) * BigInt('0xbf58476d1ce4e5b9') % mod;
-  x = (x ^ (x >> BigInt(27))) * BigInt('0x94d049bb133111eb') % mod;
-  return x ^ (x >> BigInt(31));
+	x = (x + BigInt('0x9e3779b97f4a7c15')) % mod;
+	x = (x ^ (x >> BigInt(30))) * BigInt('0xbf58476d1ce4e5b9') % mod;
+	x = (x ^ (x >> BigInt(27))) * BigInt('0x94d049bb133111eb') % mod;
+	return x ^ (x >> BigInt(31));
 }
 
 class Random {
@@ -116,6 +116,7 @@ class Random {
 	random_int(low, high) {
 		this._advance_state();
 		let ret = this.value;
+		if (low > high) throw "Can't pick from [" + low + ", " + high + "] as low > high";
 		return Number(BigInt(low) + BigInt(ret) % (BigInt(high) - BigInt(low) + BigInt(1)));
 	}
 	random_subset(count, low, high) {
@@ -154,14 +155,15 @@ class Random {
 	}
 	random_choice(iterable) {
 		let array = Array.from(iterable);
+		if (array.length == 0) throw "Can't choose from an empty container";
 		return array[this.random_int(0, array.length - 1)];
 	}
 }
 
 function object_to_map(x) {
 	function* entries(obj) {
-    for (let key in obj)
-        yield [key, obj[key]];
+		for (let key in obj)
+				yield [key, obj[key]];
 	}
 	const map = new Map(entries(x));
 	return map;
@@ -189,24 +191,24 @@ function getVariablesFromCode(jsCode, context = {}) {
 }
 
 function splitWithMatches(str, regex) {
-    const parts = [];
-    let lastIndex = 0;
+		const parts = [];
+		let lastIndex = 0;
 
-    // Ensure regex has the global flag
-    const re = new RegExp(regex.source, regex.flags.includes('g') ? regex.flags : regex.flags + 'g');
+		// Ensure regex has the global flag
+		const re = new RegExp(regex.source, regex.flags.includes('g') ? regex.flags : regex.flags + 'g');
 
-    for (const match of str.matchAll(re)) {
-        const index = match.index;
-        // Part before the match (possibly empty)
-        parts.push(str.slice(lastIndex, index));
-        // The match itself
-        parts.push(match[0]);
-        lastIndex = index + match[0].length;
-    }
+		for (const match of str.matchAll(re)) {
+				const index = match.index;
+				// Part before the match (possibly empty)
+				parts.push(str.slice(lastIndex, index));
+				// The match itself
+				parts.push(match[0]);
+				lastIndex = index + match[0].length;
+		}
 
-    // Part after the last match (possibly empty)
-    parts.push(str.slice(lastIndex));
-    return parts;
+		// Part after the last match (possibly empty)
+		parts.push(str.slice(lastIndex));
+		return parts;
 }
 
 
@@ -418,6 +420,9 @@ class rule {
 		}
 		return content.content;
 	}
+	is_similar(other_rule) {
+		return this.similar_rules.includes(other_rule.id) || other_rule.similar_rules.includes(this.id);
+	}
 };
 
 function parse_suits(s) {
@@ -462,6 +467,70 @@ function hide_all() {
 		x.style.display = 'none';
 }
 
+function compareLex(a, b) {
+	const len = Math.min(a.length, b.length);
+
+	for (let i = 0; i < len; i++) {
+		if (a[i] < b[i]) return -1;
+		if (a[i] > b[i]) return 1;
+	}
+
+	// All elements equal so far → shorter array is smaller
+	if (a.length < b.length) return -1;
+	if (a.length > b.length) return 1;
+	return 0;
+}
+
+
+function select_rules(rules, rng, count) {
+	let N = rules.length;
+	let used_before = 0, used_after = 0;
+	let used_count = new Array(N).fill(0);
+	let similar = new Array(N);
+	let id_to_index = new Map();
+	for (let i = 0; i < N; ++i) id_to_index.set(rules[i].id, i);
+	for (let i = 0; i < N; ++i) similar[i] = new Set();
+	for (let i = 0; i < N; ++i) {
+		for (let oth_index of rules[i].similar_rules) {
+			if (id_to_index.has(oth_index)) {
+				similar[i].add(id_to_index.get(oth_index));
+				similar[id_to_index.get(oth_index)].add(i);
+			}
+		}
+	}
+	let ids = [];
+	for (let _ = 0; _ < count; ++_) {
+		let best_score = undefined;
+		let best_ids = [];
+		for (let i = 0; i < N; ++i) {
+			let similar_count = 0;
+			for (let j of similar[i]) similar_count += used_count[j];
+			let this_score = [used_count[i], similar_count, (rules[i].category == 'before' ? used_before : used_after)]; //TODO: Somehow exclude from using too much "special dealing" tag?
+			if (best_score == undefined) {
+				best_score = this_score;
+				best_ids.push(i);
+			}
+			else {
+				let compare = compareLex(best_score, this_score);
+				if (compare == 1) {
+					best_score = this_score;
+					best_ids = [i];
+				}
+				else if (compare == 0) {
+					best_ids.push(i);
+				}
+			}
+		}
+		console.log(_ + 1, best_score, best_ids);
+		let chosen = rng.random_choice(best_ids);
+		ids.push(chosen);
+		used_count[chosen]++;
+		if (rules[chosen].category == 'before') used_before++;
+		else used_after++;
+	}
+	return rng.random_order(ids);
+}
+
 function render(count, seed, lang) {
 	if (hardcoded === undefined) return;
 	let rules_div = document.querySelector('#rules');
@@ -477,7 +546,8 @@ function render(count, seed, lang) {
 		}
 	}
 	let rng = new Random(seed);
-	let ids = rng.balanced_sequence(count, 0, rules.length - 1);
+	let ids = select_rules(rules, rng, count);
+	// let ids = rng.balanced_sequence(count, 0, rules.length - 1);
 	for (let i = 0; i < count; ++i) {
 		try {
 			let content = rules[ids[i]].render(rng.random_int(0, BigInt("1000000000000")), lang);
