@@ -283,8 +283,26 @@ class rule {
 			else throw 'Expected special_dealing to be either \'true\' or \'false\', got :' + value;
 		}
 		else this.special_dealing = false;
+		let POSSIBLE_VULNERABILITY = ['all', 'unfavourable', 'favourable', 'none'];
+		this.vulnerability = new Set();
+		if (meta_args.has('vulnerability')) {
+			for (let x of meta_args.get('vulnerability').split(',')) {
+				x = x.trim();
+				if (!POSSIBLE_VULNERABILITY.includes(x.toLowerCase())) {
+					throw 'Expected one of: ' + POSSIBLE_VULNERABILITY + ' as vulnerability, got: ' + x;
+				}
+				x = x.toLowerCase();
+				if (this.vulnerability.has(x)) {
+					throw 'Duplicated vulnerability: ' + x;
+				}
+				this.vulnerability.add(x);
+			}
+		}
+		else {
+			for (let x of POSSIBLE_VULNERABILITY) this.vulnerability.add(x);
+		}
 		for (const [key, _] of meta_args)
-			if (!['id', 'version', 'category', 'similar rules', 'special_dealing'].includes(key))
+			if (!['id', 'version', 'category', 'similar rules', 'special_dealing', 'vulnerability'].includes(key))
 				throw 'Unknown key ' + key + ' in META section';
 		this.code = undefined;
 		if (sections.has('CODE')) {
