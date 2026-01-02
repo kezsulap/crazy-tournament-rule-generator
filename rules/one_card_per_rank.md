@@ -3,6 +3,7 @@
 - version = 1 
 - category = before
 - special_dealing = true
+- vulnerability = all, favourable
 
 # EN 
 
