@@ -31,7 +31,9 @@ no_returning_suit.md
 no_rule.md
 no_tricks.md
 odd_before_even_or_the_other_way_round.md
+one_card_per_rank_chosen_trump.md
 one_card_per_rank.md
+one_card_per_rank_spades.md
 one_hidden_card.md
 one_random_card_missing.md
 one_revoke_per_player.md
