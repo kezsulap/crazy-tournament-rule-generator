@@ -259,6 +259,11 @@ function dealer_vulnerability(i) {
 	}
 }
 
+function parse_rules() {
+	if (hardcoded === undefined) throw 'parse_rules can be called only when hardcoded !== undefined';
+	
+}
+
 class rule {
 	constructor(raw_markdown) {
 		let sections = split_into_sections(raw_markdown);
@@ -291,7 +296,7 @@ class rule {
 			for (let x of meta_args.get('vulnerability').split(',')) {
 				x = x.trim();
 				if (!POSSIBLE_VULNERABILITY.includes(x.toLowerCase())) {
-					throw 'Expected one of: ' + POSSIBLE_VULNERABILITY + ' as vulnerability, got: ' + x;
+					throw 'Expected one of: ' + POSSIBLE_VULNERABILITY + ' as vulnerability, got: ' + x + ' (vulnerability is given from dealer\'s perspective)';
 				}
 				x = x.toLowerCase();
 				if (this.vulnerability.has(x)) {
@@ -531,11 +536,18 @@ function select_rules(rules, rng, count) {
 	return rng.random_order(ids);
 }
 
-function render(count, seed, lang) {
-	if (hardcoded === undefined) return;
-	let rules_div = document.querySelector('#rules');
-	let menu_div = document.querySelector('#rules_menu');
-	let rules = [];
+function decode_rules(rules_content) {
+	let decoded = base64DecodeUtf8(rules_content);
+	let split = decoded.split(';');
+	for (let i = 0; i < split.length; ++i) {
+		split[i] = split[i].split(',');
+	}
+	return split;
+}
+
+function process_and_store_rules_globally() {
+	if (hardcoded === undefined) throw 'process_and_store_rules_globally can only be called when hardcoded !== undefined';
+	rules = []; //Intentionally stored as global
 	for (let [filename, raw_rule_markdown] of hardcoded) {
 		try {
 			rules.push(new rule(raw_rule_markdown))
@@ -545,12 +557,21 @@ function render(count, seed, lang) {
 			throw e;
 		}
 	}
+}
+
+function render(count, seed, lang) {
+	if (hardcoded === undefined) return
+	let rules_div = document.querySelector('#rules');
+	let menu_div = document.querySelector('#rules_menu');
 	let rng = new Random(seed);
+	process_and_store_rules_globally();
 	let ids = select_rules(rules, rng, count);
-	// let ids = rng.balanced_sequence(count, 0, rules.length - 1);
+	let generation_log = [1]; //Starting board
 	for (let i = 0; i < count; ++i) {
 		try {
-			let content = rules[ids[i]].render(rng.random_int(0, BigInt("1000000000000")), lang);
+			let seed = rng.random_int(0, BigInt("1000000000000"));
+			let content = rules[ids[i]].render(seed, lang);
+			generation_log.push([i, rules[ids[i]].id, rules[ids[i]].version, seed].join(","));
 			let content_node = document.createElement('div');
 			let board_id = document.createElement('div');
 			board_id.classList.add('board_id');
@@ -570,8 +591,81 @@ function render(count, seed, lang) {
 			throw e;
 		}
 	}
+	let serialised = generation_log.join(';');
+	const rules_url = window.location.origin + window.location.pathname + '?chosen_rules=' + base64EncodeUtf8(serialised);
+	document.querySelector('a#rules_url').setAttribute('href', rules_url);
+	console.log(serialised);
 	menu_div.style.display = '';
 }
+
+function base64EncodeUtf8(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = "";
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary).replace('+', '-').replace('/', '_').replace('=', '.');
+}
+
+function base64DecodeUtf8(base64) {
+	const nonescaped = base64.replace('-', '+').replace('_', '/').replace('.', '=');
+  const binary = atob(nonescaped);
+  const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+function put_content(contents, captions, categories) {
+	let rules_div = document.querySelector('#rules');
+	let menu_div = document.querySelector('#rules_menu');
+	for (let i = 0; i < contents.length; ++i) {
+		let content_node = document.createElement('div');
+		let board_id = document.createElement('div');
+		board_id.classList.add('board_id');
+		board_id.classList.add(categories[i]);
+		board_id.innerHTML = captions[i];
+		board_id.addEventListener('click', flip_rule_visible);
+		let rule_content = document.createElement('div');
+		rule_content.classList.add('rule_content');
+		rule_content.innerHTML = parse_suits(marked.parse(contents[i]));
+		rule_content.style.display = 'none';
+		content_node.appendChild(board_id);
+		content_node.appendChild(rule_content);
+		rules_div.appendChild(content_node);
+	}
+	menu_div.style.display = '';
+}
+
+function decode_and_display(encoded_rules) { //TODO: some more error handling of invalid urls
+	document.querySelector('#menu').style.display = 'none';
+	process_and_store_rules_globally();
+	let decoded_rules = decode_rules(encoded_rules);
+	let start_board = Number(decoded_rules[0]);
+	let rules_config = decoded_rules.slice(1);
+	let N = rules_config.length;
+	let content = new Array(N);
+	let caption = new Array(N);
+	let category = new Array(N);
+	
+	let lang = 'EN';
+
+	for (let [i, rule_id, rule_version, seed] of rules_config) {
+		i = Number(i);
+		let found_rule = undefined;
+		for (let rule of rules) {
+			if (rule.id === rule_id && rule.version === rule_version) {
+				found_rule = rule;
+				break;
+			}
+		}
+		if (found_rule === undefined) {
+			throw 'Rule ' + rule_id + ' with version ' + rule_version + ' not found';
+		}
+		content[i] = found_rule.render(seed, lang);
+		caption[i] = 'Board ' + (i + start_board) + ' (' + found_rule.category + (found_rule.special_dealing ? ', requires dealing the cards in a special way' : '') + ')';
+		category[i] = found_rule.category;
+	}
+	put_content(content, caption, category);
+	document.querySelector('a#rules_url').setAttribute('href', window.location.href);
+}
+
 
 function handleSubmit() {
 	document.querySelector('#menu').style.display = 'none';
@@ -594,6 +688,11 @@ function init() {
 			hardcoded = [];
 			for (let i = 0; i < file_names.length; ++i)
 				hardcoded.push([file_names[i], content[i]]);
+			let params = new URLSearchParams(document.location.search);
+			let chosen_rules = params.get('chosen_rules');
+			if (chosen_rules !== null) {
+				decode_and_display(chosen_rules);
+			}
 		}
 	})
 }
