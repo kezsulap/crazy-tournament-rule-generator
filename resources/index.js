@@ -633,6 +633,17 @@ function put_content(contents, captions, categories) {
 	menu_div.style.display = '';
 }
 
+function extract_rules_ids_and_versions() {
+	let params = new URLSearchParams(document.location.search);
+	let chosen_rules = params.get('chosen_rules');
+	if (chosen_rules === null) return undefined;
+	let decoded_rules = decode_rules(chosen_rules);
+	let rules_config = decoded_rules.slice(1);
+	let ret = [];
+	for (let [_i, rule_id, rule_version, _seed] of rules_config) ret.push([rule_id, rule_version]);
+	return ret;
+}
+
 function decode_and_display(encoded_rules) { //TODO: some more error handling of invalid urls
 	document.querySelector('#menu').style.display = 'none';
 	process_and_store_rules_globally();
@@ -677,12 +688,23 @@ function init() {
 		if (hardcoded === undefined) {
 			let all_found = load('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/list_all.txt');
 			let file_names = [], file_urls = [];
+			let chosen_rules_ids_and_versions = extract_rules_ids_and_versions();
 			for (let file_line of all_found.split('\n')) {
-				let content = file_line.split(' ');
-				if (content.length <= 3) {
-					file = content[0].trim();
+				let [filename, this_rule_id, this_rule_version, this_rule_commit] = file_line.split(' ');
+				let proceed = undefined;
+				if (chosen_rules_ids_and_versions === undefined) proceed = this_rule_commit === undefined;
+				else {
+					for (let [rule_id, rule_version] of chosen_rules_ids_and_versions) {
+						if (rule_id == this_rule_id && rule_version == this_rule_version) {
+							proceed = true;
+							break;
+						}
+					}
+				}
+				if (proceed) {
+					file = filename.trim();
 					if (file.length) {
-						file_urls.push('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/' + file);
+						file_urls.push('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/' + (this_rule_commit === undefined ? 'rules' : this_rule_commit) + '/rules/' + file);
 						file_names.push(file);
 					}
 				}
