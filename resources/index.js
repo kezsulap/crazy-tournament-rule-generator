@@ -677,11 +677,14 @@ function init() {
 		if (hardcoded === undefined) {
 			let all_found = load('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/list_all.txt');
 			let file_names = [], file_urls = [];
-			for (let file of all_found.split('\n')) {
-				file = file.trim();
-				if (file.length) {
-					file_urls.push('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/' + file);
-					file_names.push(file);
+			for (let file_line of all_found.split('\n')) {
+				let content = file_line.split(' ');
+				if (content.length <= 3) {
+					file = content[0].trim();
+					if (file.length) {
+						file_urls.push('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/' + file);
+						file_names.push(file);
+					}
 				}
 			}
 			let content = await fetchAll(file_urls);
