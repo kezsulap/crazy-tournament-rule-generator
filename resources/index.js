@@ -160,6 +160,12 @@ class Random {
 	}
 }
 
+class RandomWithStore {
+	constructor() {
+		this.cache = new Map();
+	}
+};
+
 function object_to_map(x) {
 	function* entries(obj) {
 		for (let key in obj)
@@ -685,6 +691,7 @@ function handleSubmit() {
 
 function init() {
 	window.addEventListener('load', async function() {
+		document.querySelector('#seed').value = Math.floor(Math.random() * 1000000000);
 		if (hardcoded === undefined) {
 			let all_found = load('https://raw.githubusercontent.com/kezsulap/crazy-tournament-rule-generator/refs/heads/rules/rules/list_all.txt');
 			let file_names = [], file_urls = [];
