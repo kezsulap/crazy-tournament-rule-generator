@@ -160,9 +160,46 @@ class Random {
 	}
 }
 
-class RandomWithStore {
+class RandomWithCache {
 	constructor() {
 		this.cache = new Map();
+		this.previous = 0;
+	}
+	_get_cached(tag) {
+		if (this.cache.has(tag)) return this.cache.get(tag);
+		let new_list = [];
+		this.cache.set(tag, new_list);
+		return new_list;
+	}
+	random_int(tag, low, high, rng) {
+		let this_list = this._get_cached(tag);
+		let range_length = high - low + 1;
+		if (this_list.length >= range_length) {
+			let count = new Array(range_length).fill(0);
+			for (let a of this_list)
+				if (a >= low && a <= high)
+					count[a - low]++;
+			let lowest = Math.min(...count);
+			let candidates = [];
+			for (let i = 0; i < range_length; ++i)
+				if (count[i] == lowest)
+					candidates.push(i + low);
+			let x = rng.random_choice(candidates);
+			this_list.push(x);
+			return x;
+		}
+		else {
+			while (true) {
+				let x = rng.random_int(low, high);
+				if (!this_list.includes(x)) {
+					this_list.push(x);
+					return x;
+				}
+			}
+		}
+	}
+	mark_completed() {
+		this.previous++;
 	}
 };
 
@@ -369,6 +406,7 @@ class rule {
 				previous_lang_name = section_name;
 			}
 		}
+		this.random_cache = new RandomWithCache();
 	}
 	render(seed, language) {
 		let content = undefined;
@@ -386,6 +424,7 @@ class rule {
 		}
 		if (this.code !== undefined) {
 			let rng = new Random(seed);
+			let random_cache = this.random_cache;
 			function random_subset(count, low, high) { //TODO: handle more errors
 				return rng.random_subset(count, low, high);
 			}
@@ -404,6 +443,15 @@ class rule {
 			function random_choice(iterable) {
 				return rng.random_choice(iterable);
 			}
+			function random_int_with_cache(tag, low, high) {
+				return random_cache.random_int(tag, low, high, rng);
+			}
+			function count_previous() {
+				return random_cache.previous;
+			}
+			function get_previous_for_tag(tag) {
+				return random_cache._get_cached(tag);
+			}
 			function bid_to_str(x) {
 				return (1 + Math.floor((x - 1) / 5)) + '' + DENOMINATIONS[(x - 1) % 5];
 			}
@@ -418,7 +466,7 @@ class rule {
 			let PLAYERS = ['N', 'E', 'S', 'W'];
 			let SUITS = [CLUB, DIAMOND, HEART, SPADE];
 			let DENOMINATIONS = [CLUB, DIAMOND, HEART, SPADE, 'NT']
-			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, random_choice, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math});
+			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, random_choice, random_int_with_cache, count_previous, get_previous_for_tag, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math});
 			let split = splitWithMatches(content.content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
 				let variable_name = split[i].substr(2, split[i].length - 3).trim();
@@ -433,6 +481,9 @@ class rule {
 	}
 	is_similar(other_rule) {
 		return this.similar_rules.includes(other_rule.id) || other_rule.similar_rules.includes(this.id);
+	}
+	reset_cache() {
+		this.random_cache = new RandomWithCache();
 	}
 };
 
