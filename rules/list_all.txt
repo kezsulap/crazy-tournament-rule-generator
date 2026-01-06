@@ -1,36 +1,36 @@
 KQJ_equal.md 97466696305502 1
 bid_one_per_level.md 730963219640543370571 1
 bid_with_cards_from_hand.md 9685427317585169 1
-bidding_hops_turns_etc_on_each_denomination.md 70079499385144 1
+bidding_hops_turns_etc_on_each_denomination.md 70079499385144 2
 bingo.md 6262222316188320379 1
-cards_seen_for_all_but_me.md 770618531580 1
+cards_seen_for_all_but_me.md 770618531580 2
 clockwise_counterclockwise_alternate.md 557555391507 1
 clubs_blue_suit.md 532703080314295 1
 contracts_list.md 967959200718268 1
-cycle_suits_lead.md 26839290439050518 1
+cycle_suits_lead.md 26839290439050518 2
 defenders_must_play_trumps.md 97591852315629 1
 different_contracts_ranking.md 9806132048239972 1
-draw_until_13_during_play.md 572454515372247 1
+draw_until_13_during_play.md 572454515372247 2
 each_defender_one_suit_face_up_dummy_2.md 98979736486498 1
 each_player_lays_down_2_suits.md 64131096084543 1
 exact_number_of_tricks.md 0140207777811476 1
 forced_one_higher_lower.md 6002948166163 1
 hearts.md 712600054510 1
 highest_lowest_alternating.md 4473888299732891 1
-jumps_only.md 54847564235923902 1
+jumps_only.md 54847564235923902 2
 king_queen_or_queen_jack_changing_trump.md 614882323736 1
 lead_after_partner_won.md 1275320882719 1
-lead_after_partner_won_with_odd_even.md 14943957936700715 1
+lead_after_partner_won_with_odd_even.md 14943957936700715 2
 lead_for_contract.md 1016441125959 1
 lead_three_suits.md 55027194034 1
-limited_jumping.md 04752976108786265 1
-mixed_suit_new_suits.md 2463158597859 1
+limited_jumping.md 04752976108786265 2
+mixed_suit_new_suits.md 2463158597859 2
 mutual_neutralization.md 2443604581945646911699 1
 no_ducking_in_4th_seat.md 8719197281738875596 1
 no_returning_suit.md 872784691717782 1
 no_rule.md 089653835263409 1
 no_tricks.md 0457349624395 1
-odd_before_even_or_the_other_way_round.md 622530134474860447 1
+odd_before_even_or_the_other_way_round.md 622530134474860447 2
 one_card_per_rank.md 604217868766597 1
 one_card_per_rank_chosen_trump.md 89195993098316 1
 one_card_per_rank_spades.md 02145026294253347 1
@@ -50,7 +50,19 @@ show_after_each_bid.md 132902550085453643 1
 two_bids_per_player.md 520120084485 1
 two_bids_unlimited_doubles_redoubles.md 932338255784252144 1
 two_suit_clockwise_two_counterclockwise.md 710523224811 1
-two_trump_suits.md 6080035998141 1
-up_or_down.md 86979238437474 1
-voids.md 55305693246495247 1
+two_trump_suits.md 6080035998141 2
+up_or_down.md 86979238437474 2
+voids.md 55305693246495247 2
+lead_after_partner_won_with_odd_even.md 14943957936700715 1 fb69b6fc64b399f8e675cfa4a6dbeb10e5d81f19
+odd_before_even_or_the_other_way_round.md 622530134474860447 1 fb69b6fc64b399f8e675cfa4a6dbeb10e5d81f19
+bidding_hops_turns_etc_on_each_denomination.md 70079499385144 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+cards_seen_for_all_but_me.md 770618531580 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+cycle_suits_lead.md 26839290439050518 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+draw_until_13_during_play.md 572454515372247 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+jumps_only.md 54847564235923902 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+limited_jumping.md 04752976108786265 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+mixed_suit_new_suits.md 2463158597859 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+two_trump_suits.md 6080035998141 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+up_or_down.md 86979238437474 1 d67ab18114894c67c37746df52b6f7a20c200c2f
+voids.md 55305693246495247 1 d67ab18114894c67c37746df52b6f7a20c200c2f
 pre_specified_trump_for_some_tricks.md 23045401056 1 dfa4704ecf7b5aaddf5ed34b34a95d6f1dd8ffd0

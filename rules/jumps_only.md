@@ -1,12 +1,12 @@
 # META
 - id = 54847564235923902 
-- version = 1 
+- version = 2 
 - category = before
 - similar rules = 04752976108786265
 
 # CODE
 ```javascript
-minimum_skipped = random_int(2, 7)
+minimum_skipped = random_int_with_cache('minimum_skipped', 2, 7)
 
 example_1_low = bid_to_str(1)
 example_1_high = bid_to_str(1 + minimum_skipped)

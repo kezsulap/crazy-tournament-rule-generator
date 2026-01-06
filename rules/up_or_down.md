@@ -1,11 +1,11 @@
 # META
 - id = 86979238437474 
-- version = 1
+- version = 2
 - category = after
 
 # CODE
 ```javascript
-count = random_int(5, 8)
+count = random_int_with_cache('count', 5, 8)
 remaining = 13 - count
 ```
 

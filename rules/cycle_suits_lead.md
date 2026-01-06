@@ -1,11 +1,11 @@
 # META
 - id = 26839290439050518 
-- version = 1
+- version = 2
 - category = after
 
 # CODE
 ```javascript
-suit_id = random_int(0, 3);
+suit_id = random_int_with_cache('suit_id', 0, 3);
 first_suit = SUITS[suit_id];
 second_suit = SUITS[(suit_id + 1) % 4];
 third_suit = SUITS[(suit_id + 2) % 4];

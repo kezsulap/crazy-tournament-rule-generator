@@ -1,11 +1,11 @@
 # META
 - id = 622530134474860447 
-- version = 1 
+- version = 2 
 - category = after
 
 # CODE
 ```javascript
-if (random_int(0, 1)) card_parity = LANG_PHRASES('odd_card')
+if (random_int_with_cache('parity', 0, 1)) card_parity = LANG_PHRASES('odd_card')
 else card_parity = LANG_PHRASES('even_card')
 ```
 

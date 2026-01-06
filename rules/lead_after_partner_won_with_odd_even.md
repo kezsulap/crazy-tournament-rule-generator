@@ -1,12 +1,12 @@
 # META
 - id = 14943957936700715 
-- version = 1
+- version = 2
 - category = after
 - similar rules = 1275320882719
 
 # CODE
 ```javascript
-if (random_int(0, 1)) {
+if (random_int_with_cache('parity', 0, 1)) {
     me_continue = LANG_PHRASES('odd');
     partner_continue = LANG_PHRASES('even')
 }

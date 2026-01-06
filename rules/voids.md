@@ -1,11 +1,11 @@
 # META
 - id = 55305693246495247 
-- version = 1
+- version = 2
 - category = before
 
 # CODE
 ```javascript
-count = random_int(6, 10);
+count = random_int_with_cache('count', 6, 10);
 ```
 
 # EN 

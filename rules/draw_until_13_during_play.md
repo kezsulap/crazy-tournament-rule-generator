@@ -1,11 +1,11 @@
 # META
 - id = 572454515372247 
-- version = 1
+- version = 2
 - category = after
 
 # CODE
 ```javascript
-in_hand = random_int(6, 9)
+in_hand = random_int_with_cache('in_hand', 6, 9)
 rest = 13 - in_hand
 ```
 

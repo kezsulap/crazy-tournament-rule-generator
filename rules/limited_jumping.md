@@ -1,13 +1,13 @@
 # META
 - id = 04752976108786265 
-- version = 1 
+- version = 2 
 - category = before
 - similar rules = 54847564235923902
 
 
 # CODE
 ```javascript
-maximum_skipped = random_int(4, 7)
+maximum_skipped = random_int_with_cache('maximum_skipped', 4, 7)
 
 highest_start = bid_to_str(maximum_skipped)
 example_1_low = bid_to_str(1);

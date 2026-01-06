@@ -1,11 +1,11 @@
 # META
 - id = 70079499385144
-- version = 1 
+- version = 2 
 - category = before
 
 # CODE
 ```javascript
-passes_count = random_int(5, 8);
+passes_count = random_int_with_cache('passes_count', 5, 8);
 [a, b, c, d, e] = random_order([LANG_PHRASES('next_player_must_pass'), LANG_PHRASES('bidding_continues_as_normal'), LANG_PHRASES('one_pass_used_up_by_bid'), LANG_PHRASES('bidding_order_reverses'), LANG_PHRASES('bidding_hops_over')])
 
 ```

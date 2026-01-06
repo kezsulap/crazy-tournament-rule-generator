@@ -1,13 +1,13 @@
 # META
 - id = 2463158597859 
-- version = 1 
+- version = 2 
 - category = before
 - similar rules = 6080035998141
 
 # CODE
 ```javascript
 suit_names_list = LANG_PHRASES('suit_names').trim().split(' ')
-type = random_int(0, 2)
+type = random_int_with_cache('type', 0, 2)
 permutations = []
 function is_even_permutation(permutation) {
     let sign = 0;

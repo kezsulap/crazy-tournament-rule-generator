@@ -1,6 +1,6 @@
 # META
 - id = 6080035998141 
-- version = 1
+- version = 2
 - category = before
 - similar rules = 2463158597859 
 
@@ -9,7 +9,7 @@
 suit_names_list = LANG_PHRASES('suit_names').trim().split(' ')
 suit_symbols = ['🦋', '🐘', '🦒', '🐸', '🐢', '🦢', '🧸', '🦆', '🐈', '🐶']
 suits = []
-mode = random_int(0, 4);
+mode = random_int_with_cache('mode', 0, 4);
 if (mode == 0) {
     for (let i = 0; i <= 4; ++i)
         for (let j = i + 1; j <= 4; ++j)
@@ -33,7 +33,7 @@ else if (mode == 3) {
 else if (mode == 4) {
     for (let i = 0; i <= 4; ++i) {
         for (let j = i + 1; j <= 4; ++j) {
-            if (random_int(0, 2))
+            if (random_int_with_cache('denominations_swap', 0, 2))
                 suits.push([DENOMINATIONS[i], DENOMINATIONS[j]]);
             else
                 suits.push([DENOMINATIONS[j], DENOMINATIONS[i]]);
