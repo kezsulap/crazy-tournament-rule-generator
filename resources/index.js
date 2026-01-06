@@ -467,6 +467,7 @@ class rule {
 			let SUITS = [CLUB, DIAMOND, HEART, SPADE];
 			let DENOMINATIONS = [CLUB, DIAMOND, HEART, SPADE, 'NT']
 			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, random_choice, random_int_with_cache, count_previous, get_previous_for_tag, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math});
+			this.random_cache.mark_completed();
 			let split = splitWithMatches(content.content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
 				let variable_name = split[i].substr(2, split[i].length - 3).trim();
