@@ -2,7 +2,7 @@
 - id = 557555391507 
 - version = 1 
 - category = after
-- similar rules = 710523224811
+- similar rules = 710523224811, 094797420481777
 
 # EN 
 

@@ -1,3 +1,4 @@
+69_forced_4_swap.md 094797420481777 1
 KQJ_equal.md 97466696305502 1
 bid_one_per_level.md 730963219640543370571 1
 bid_with_cards_from_hand.md 9685427317585169 1
