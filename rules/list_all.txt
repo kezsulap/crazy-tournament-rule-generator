@@ -8,6 +8,7 @@ cards_seen_for_all_but_me.md 770618531580 2
 clockwise_counterclockwise_alternate.md 557555391507 1
 clubs_blue_suit.md 532703080314295 1
 contracts_list.md 967959200718268 1
+contracts_list_with_lead.md 6615513564407132 1
 cycle_suits_lead.md 26839290439050518 2
 defenders_must_play_trumps.md 97591852315629 1
 different_contracts_ranking.md 9806132048239972 1

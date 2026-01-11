@@ -1,8 +1,8 @@
 # META
-- id = 967959200718268
+- id = 6615513564407132 
 - version = 1
 - category = before
-- similar rules = 6615513564407132
+- similar rules = 967959200718268, 1016441125959
 
 # CODE
 ```javascript
@@ -46,27 +46,33 @@ while (repeated);
 
 contracts = ''
 
+suits_lead = balanced_sequence(REMAINING_CONTRACTS, 0, 3);
+ranks_lead = balanced_sequence(REMAINING_CONTRACTS, 0, 12);
+
 
 for (let i = 0; i < PASSED_OUT; ++i) contracts += '- PASS\n';
 
 contracts_array.sort((x, y) => (x[0] != y[0] ? x[0] - y[0] : x[1] - y[1]));
 
+let i = 0;
 for (let [level, denomination, declarer, doubled] of contracts_array) {
-    contracts += '- ' + level + DENOMINATIONS[denomination] + doubled + declarer + '\n';
+    contracts += '- ' + level + DENOMINATIONS[denomination] + doubled + declarer + ', ' + SUITS[suits_lead[i]] + RANKS[ranks_lead[i]] + '\n';
+    i++;
 }
 
 ```
 
 # EN 
 
-Only the following contracts can be played, beginning from the dealer going clockwise each player crosses out one of the contracts, once there's only one left, that's the final contract and the play phase
-begins as usual:
+Only the following contracts can be played, with the following card, lead in trick 1. Beginning from the dealer going clockwise each player crosses out one of the contracts, once there's only one left, that's the final contract,
+if it's not PASSed out whoever has the card chosen leads it on trick 1, the partner of the chosen declarer lays the dummy as usual and the play continues as usual.
 
 &(contracts)
 
 # PL
 
-Możliwa jest rozgrywka jedynie poniższych kontraktów, zaczynając od dealera, idąc zgodnie z ruchem wskazówek zegara gracze wykreślają po jednym kontrakcie, kiedy zostanie tylko jeden kontrakt staje się on
-kontraktem ostatecznym i przystępujemy do rozgrywki zgodnie ze standardowymi zasadami:
+Możliwa jest rozgrywka jedynie poniższych kontraktów po wyjściu następującą kartą w pierwszej lewie. Zaczynając od dealera, idąc zgodnie z ruchem wskazówek zegara gracze wykreślają po jednym kontrakcie,
+kiedy zostanie tylko jeden kontrakt staje się on kontraktem ostatecznym. Jeśli nie są to 4 pasy, to gracz mający kartę podaną jako kartę wistu, niezależnie który z graczy to jest, wychodzi nią w pierwszej lewie,
+partner gracza, który został wybrany rozgrywającym wykłada dziadka i przystępujemy do rozgrywki zgodnie ze standardowymi zasadami.
 
 &(contracts)
