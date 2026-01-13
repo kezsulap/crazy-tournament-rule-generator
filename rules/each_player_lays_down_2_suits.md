@@ -2,7 +2,7 @@
 - id = 64131096084543 
 - version = 1 
 - category = after
-
+- similar rules = 98979736486498 
 # CODE
 ```javascript
 [suit1, suit2, suit3, suit4] = random_order(SUITS);
