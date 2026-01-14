@@ -15,3 +15,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+table {
+	border-collapse: collapse;
+}
+td {
+	border-style: solid;
+}
