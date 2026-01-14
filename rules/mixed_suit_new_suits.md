@@ -1,13 +1,13 @@
 # META
 - id = 2463158597859 
-- version = 2 
+- version = 3 
 - category = before
 - similar rules = 6080035998141
 
 # CODE
 ```javascript
 suit_names_list = LANG_PHRASES('suit_names').trim().split(' ')
-type = random_int_with_cache('type', 0, 2)
+type = random_int_with_cache('type', 0, 3)
 permutations = []
 function is_even_permutation(permutation) {
     let sign = 0;
@@ -27,6 +27,15 @@ for (let i = 0; i < 4; ++i) for (let j = 0; j < 4; ++j) for (let k = 0; k < 4; +
     let this_permutation = [i, j, k, l];
     if (is_even_permutation(this_permutation))
         permutations.push(this_permutation);
+}
+if (type == 2 || type == 3) {
+    if (random_int_with_cache('odd_permutations', 0, 1)) {
+        for (let i = 0; i < 12; ++i) {
+            let b = permutations[i][2];
+            permutations[i][2] = permutations[i][3];
+            permutations[i][3] = b;
+        }
+    }
 }
 sorting_order = []
 for (let i = 0; i < 4; ++i) sorting_order.push([i, random_int(0, 1) ? 1 : -1]);
@@ -66,11 +75,19 @@ else if (type == 2) {
         suits.push([make_suit(a, b, c, d), make_suit(b, c, d, a), make_suit(c, d, a, b), make_suit(d, a, b, c)]);
     }
 }
+else if (type == 3) {
+    function make_suit(x, y, z, t) {
+        return SUITS[x] + '{AKQ}' + SUITS[y] + '{JT9}' + SUITS[z] + '{876}' + SUITS[t] + '{5432}';
+    }
+    for (let [a, b, c, d] of permutations) {
+        suits.push([make_suit(a, b, c, d), SUITS[a] + '{JT98765432}', SUITS[b] + '{AKQ8765432}', SUITS[c] + '{AKQJT95432}', SUITS[d] + '{AKQJT9876}']);
+    }
+}
 
 suit_symbols = ['🍎', '🍊', '🍉', '🍌', '🍓', '🫐', '🍇', '🥑', '🍅', '🍋', '🎃', '🥥']
 
-table = "| | " + LANG_PHRASES('trump_suit') + "|" + LANG_PHRASES('other_suits') + "|||" + LANG_PHRASES('scoring') + "|\n";
-table += "|--- |---|---|---|---|---|\n"
+table = "| | " + LANG_PHRASES('trump_suit') + "|" + LANG_PHRASES('other_suits') + "|||" + (type == 3 ? '|' : '') + LANG_PHRASES('scoring') + "|\n";
+table += "|--- |---|---|---|---|---|" + (type == 3 ? '---|' : '') + "\n"
 for (let i = 0; i < 12; ++i) {
     table += '|' + suit_names_list[i] + ' (' + suit_symbols[i] + ')' + '|';
     for (let suit of suits[i])
