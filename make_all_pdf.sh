@@ -1,6 +1,6 @@
 mkdir pdf-rules -p
 set -e
-for x in $(ls rules | grep -v 'list_all.txt'); do 
+for x in $(ls rules | grep '\.md$'); do 
 	input_file=rules/${x}
 	output_file=pdf-rules/${x%md}pdf
 	if [ "$input_file" -ot "$output_file" ]; then
