@@ -41,8 +41,8 @@ else if (mode == 4) {
     }
     suits = random_order(suits);
 }
-table = "| | " + LANG_PHRASES('odd_trump') + "|" + LANG_PHRASES('even_trump') + "|||" + LANG_PHRASES('scoring') + "|\n";
-table += "|--- |---|---|---|---|---|\n"
+table = "| | " + LANG_PHRASES('odd_trump') + "|" + LANG_PHRASES('even_trump') + "|" + LANG_PHRASES('scoring') + "|\n";
+table += "|---|---|---|---|\n"
 for (let i = 0; i < 10; ++i) {
     table += '|' + suit_names_list[i] + ' (' + suit_symbols[i] + ')' + '|';
     for (let suit of suits[i])
