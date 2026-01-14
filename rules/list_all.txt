@@ -49,6 +49,7 @@ rudolf_red_suits.md 8886694585630 1
 scrooge.md 693356508910382810141 1
 show_after_each_bid.md 132902550085453643 1
 some_players_laying_down_some_suits.md 98979736486498 2
+subset_of_contracts.md 1987838664427 1
 two_bids_per_player.md 520120084485 1
 two_bids_unlimited_doubles_redoubles.md 932338255784252144 1
 two_suit_clockwise_two_counterclockwise.md 710523224811 1
