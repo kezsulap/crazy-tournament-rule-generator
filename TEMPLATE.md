@@ -5,7 +5,7 @@
 - similar rules = 1,10,100 (ids, or remove completely if there are none)
 
 # CODE
-```
+```javascript
 // insert code here, or remove section if doesn't apply
 ```
 
