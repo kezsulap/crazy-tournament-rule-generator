@@ -83,7 +83,7 @@ Whenever a player with any cards left face-up is to play a card the procedure go
 Po pierwszym wiście:
 &(lay_down_list)
 
-Kiedy gracz mający jakiekolwiek karty ma zagrać kartę procedura jest następująca:
+Kiedy gracz mający jakiekolwiek karty odkryte ma zagrać kartę procedura jest następująca:
 - Jeśli gracz ten wychodzi jego partner albo wybiera jedną z odkrytych kart, albo nakazuje partnerowi samemu wybranie jednej z zakrytych
 - Jeśli gracz ma dołożyć kolejną kartę w lewie
     - Jeśli wciąż ma na stole kartę w kolorze wyjścia jego partner wybiera jedną z nich
