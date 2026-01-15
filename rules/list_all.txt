@@ -25,6 +25,7 @@ lead_after_partner_won_with_odd_even.md 14943957936700715 2
 lead_for_contract.md 1016441125959 1
 lead_three_suits.md 55027194034 1
 limited_jumping.md 04752976108786265 2
+lowest_wins_in_specified_tricks.md 812539603021 1
 mixed_suit_new_suits.md 2463158597859 3
 mutual_neutralization.md 2443604581945646911699 1
 no_ducking_in_4th_seat.md 8719197281738875596 1
