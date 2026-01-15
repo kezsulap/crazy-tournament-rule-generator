@@ -351,8 +351,19 @@ class rule {
 		else {
 			for (let x of POSSIBLE_VULNERABILITY) this.vulnerability.add(x);
 		}
+		if (meta_args.has('tags')) {
+			let tags_str = meta_args.get('tags').split(',');
+			for (let i = 0; i < tags_str.length; ++i) {
+				tags_str[i] = tags_str[i].trim();
+			}
+			this.tags = new Set();
+			for (let x of tags_str) this.tags.add(x);
+		}
+		else {
+			this.tags = new Set();
+		}
 		for (const [key, _] of meta_args)
-			if (!['id', 'version', 'category', 'similar rules', 'special_dealing', 'vulnerability'].includes(key))
+			if (!['id', 'version', 'category', 'similar rules', 'special_dealing', 'vulnerability', 'tags'].includes(key))
 				throw 'Unknown key ' + key + ' in META section';
 		this.code = undefined;
 		if (sections.has('CODE')) {
