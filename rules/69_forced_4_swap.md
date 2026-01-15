@@ -5,7 +5,7 @@
 - similar rules = 710523224811, 557555391507, 6002948166163
 
 # CODE
-```
+```javascript
 is_first = count_previous() == 0
 
 if (is_first) {

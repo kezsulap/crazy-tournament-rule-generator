@@ -4,7 +4,7 @@
 - category = before
 
 # CODE
-```
+```javascript
 count = random_int_with_cache('count', 10, 25)
 while (true) {
     chosen = random_subset(count, 0, 34);
