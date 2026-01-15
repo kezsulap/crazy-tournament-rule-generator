@@ -25,6 +25,7 @@ During the bidding after every bid in:
 - ♠: &(d)
 - NT: &(e)
 
+After a double, partner of the doubling player must pass whenever it's their next turn.
 
 The bidding ends after there were &(passes_count) passes in total
 
@@ -43,6 +44,8 @@ Po każdej odzywce w:
 - ♥: &(c)
 - ♠: &(d)
 - NT: &(e)
+
+Po każdej kontrze partner kontrującego musi spasować przy najbliższej możliwej okazji.
 
 
 Licytacja kończy się kiedy padnie łącznie &(passes_count) pasów
