@@ -302,11 +302,6 @@ function dealer_vulnerability(i) {
 	}
 }
 
-function parse_rules() {
-	if (hardcoded === undefined) throw 'parse_rules can be called only when hardcoded !== undefined';
-	
-}
-
 class rule {
 	constructor(raw_markdown) {
 		let sections = split_into_sections(raw_markdown);
