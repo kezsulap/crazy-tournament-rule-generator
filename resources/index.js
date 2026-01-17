@@ -357,8 +357,30 @@ class rule {
 		else {
 			this.tags = new Set();
 		}
+		if (meta_args.has('meta')) {
+			let value = meta_args.get('meta');
+			if (value == 'true') this.meta = true;
+			else if (value == 'false') this.meta = false;
+			else throw 'Expected meta to be either \'true\' or \'false\', got :' + value;
+		}
+		else this.meta = false;
+		if (meta_args.has('meta_only')) {
+			let value = meta_args.get('meta_only');
+			if (value == 'true') this.meta_only = true;
+			else if (value == 'false') this.meta_only = false;
+			else throw 'Expected meta_only to be either \'true\' or \'false\', got :' + value;
+		}
+		else this.meta_only = false;
+		if (meta_args.has('no_meta')) {
+			let value = meta_args.get('no_meta');
+			if (value == 'true') this.no_meta = true;
+			else if (value == 'false') this.no_meta = false;
+			else throw 'Expected no_meta to be either \'true\' or \'false\', got :' + value;
+		}
+		else this.no_meta = false;
+		if (this.no_meta + this.meta + this.meta_only > 1) throw 'Can specify at most one of no_meta, meta and meta_only to be true';
 		for (const [key, _] of meta_args)
-			if (!['id', 'version', 'category', 'similar rules', 'special_dealing', 'vulnerability', 'tags'].includes(key))
+			if (!['id', 'version', 'category', 'similar rules', 'special_dealing', 'vulnerability', 'tags', 'meta', 'meta_only', 'no_meta'].includes(key))
 				throw 'Unknown key ' + key + ' in META section';
 		this.code = undefined;
 		if (sections.has('CODE')) {
