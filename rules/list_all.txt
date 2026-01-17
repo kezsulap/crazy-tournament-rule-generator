@@ -17,6 +17,7 @@ each_player_lays_down_2_suits.md 64131096084543 1
 exact_number_of_tricks.md 0140207777811476 1
 forced_one_higher_lower.md 6002948166163 1
 hearts.md 712600054510 1
+hearts_or_other_suit.md 279332475053 1
 highest_lowest_alternating.md 4473888299732891 1
 jumps_only.md 54847564235923902 2
 king_queen_or_queen_jack_changing_trump.md 614882323736 1
@@ -36,6 +37,7 @@ odd_before_even_or_the_other_way_round.md 622530134474860447 2
 one_card_per_rank.md 604217868766597 1
 one_card_per_rank_chosen_trump.md 89195993098316 1
 one_card_per_rank_spades.md 02145026294253347 1
+one_card_per_rank_trump_one_above.md 4005588260847 1
 one_hidden_card.md 49782958657314 1
 one_random_card_missing.md 3240577160205 1
 one_revoke_per_player.md 1880453567 1
