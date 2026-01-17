@@ -3,6 +3,7 @@
 - version = 1 
 - category = after
 - similar rules = 710523224811, 094797420481777
+- tags = minor_play
 
 # EN 
 

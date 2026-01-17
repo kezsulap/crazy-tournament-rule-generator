@@ -2,6 +2,7 @@
 - id = 97466696305502 
 - version = 1 
 - category = after
+- tags = minor_play
 
 
 # EN 

@@ -3,6 +3,7 @@
 - version = 2
 - category = after
 - similar rules = 1275320882719
+- tags = minor_play
 
 # CODE
 ```javascript

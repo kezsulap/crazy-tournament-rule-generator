@@ -2,6 +2,7 @@
 - id = 55027194034 
 - version = 1
 - category = after
+- tags = minor_play
 
 # EN 
 
