@@ -1,4 +1,6 @@
+4_swap_meta_only.md 54362263934001 1
 69_forced_4_swap.md 094797420481777 1
+69_forced_meta_only.md 411942266576967 1
 KQJ_equal.md 97466696305502 1
 bid_one_per_level.md 730963219640543370571 1
 bid_with_cards_from_hand.md 9685427317585169 1
@@ -39,6 +41,8 @@ one_card_per_rank_chosen_trump.md 89195993098316 1
 one_card_per_rank_spades.md 02145026294253347 1
 one_card_per_rank_trump_one_above.md 4005588260847 1
 one_hidden_card.md 49782958657314 1
+one_play_rule_per_denomination.md 4294004678475500 1
+one_play_rule_per_denomination_per_doubled_state.md 97100930565088 1
 one_random_card_missing.md 3240577160205 1
 one_revoke_per_player.md 1880453567 1
 opening_leader_becomes_dummy.md 048969212945 1

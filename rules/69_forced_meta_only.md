@@ -1,10 +1,10 @@
 # META
-- id = 094797420481777 
+- id = 411942266576967 
 - version = 1 
 - category = after 
-- similar rules = 710523224811, 557555391507, 6002948166163, 411942266576967, 54362263934001
+- similar rules = 6002948166163, 094797420481777
 - tags = minor_play
-- no_meta = true
+- meta_only = true
 
 # CODE
 ```javascript

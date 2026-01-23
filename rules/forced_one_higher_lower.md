@@ -2,7 +2,7 @@
 - id = 6002948166163 
 - version = 1 
 - category = after
-- similar rules = 094797420481777
+- similar rules = 094797420481777, 411942266576967
 - tags = minor_play
 
 # EN 
