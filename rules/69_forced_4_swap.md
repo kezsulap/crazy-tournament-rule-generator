@@ -47,8 +47,8 @@ if (forced_in_suits_other_than_lead) {
 ```
 
 # EN 
-- DEFINE `suit_lead_only` If a player has %EN_article %a in the suit lead and the trick already contains %b of the same suit, they must play it. This rule only applies to cards in the suit lead.
-- DEFINE `any_suit` If a player has %EN_article %a in any suit and the trick already contains %b of the same suit and the player can play it they must.
+- DEFINE `suit_lead_only` If a player has %EN_article %a in the suit lead and the trick already contains %b of the same suit or the other way round, they must play it. This rule only applies to cards in the suit lead.
+- DEFINE `any_suit` If a player has %EN_article %a in any suit and the trick already contains %b of the same suit or the other way round and the player can play it they must.
 
 &(rule69)
 

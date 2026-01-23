@@ -1,6 +1,6 @@
 4_swap_meta_only.md 54362263934001 1
 69_forced_4_swap.md 094797420481777 1
-69_forced_meta_only.md 411942266576967 1
+69_forced_meta_only.md 411942266576967 2
 KQJ_equal.md 97466696305502 1
 bid_one_per_level.md 730963219640543370571 1
 bid_with_cards_from_hand.md 9685427317585169 1
@@ -63,6 +63,7 @@ two_suit_clockwise_two_counterclockwise.md 710523224811 1
 two_trump_suits.md 6080035998141 2
 up_or_down.md 86979238437474 2
 voids.md 55305693246495247 2
+69_forced_meta_only.md 411942266576967 1 13a4c1bdb3f09e1c6006b38ac4965dfb5d27bcfb
 mixed_suit_new_suits.md 2463158597859 2 f67f207e25e97b775275e418d2f7266d72fc86fc
 lead_after_partner_won_with_odd_even.md 14943957936700715 1 fb69b6fc64b399f8e675cfa4a6dbeb10e5d81f19
 odd_before_even_or_the_other_way_round.md 622530134474860447 1 fb69b6fc64b399f8e675cfa4a6dbeb10e5d81f19
