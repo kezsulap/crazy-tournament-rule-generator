@@ -436,7 +436,7 @@ class rule {
 		}
 		this.random_cache = new RandomWithCache();
 	}
-	render(seed, language) {
+	render(seed, language, meta_rule_searcher) {
 		let content = undefined;
 		for (let lang_tried of [language, 'EN']) {
 			if (this.lang.has(lang_tried)) {
@@ -453,6 +453,7 @@ class rule {
 		if (this.code !== undefined) {
 			let rng = new Random(seed);
 			let random_cache = this.random_cache;
+			let is_meta = this.meta;
 			function random_subset(count, low, high) { //TODO: handle more errors
 				return rng.random_subset(count, low, high);
 			}
@@ -486,6 +487,10 @@ class rule {
 			function LANG_PHRASES(phrase_id) {
 				return content.lang_strings.get(phrase_id);
 			}
+			function get_rules(count, tags) {
+				if (!is_meta) throw 'get_rules only available from a meta rule';
+				return meta_rule_searcher.get_rules(count, tags);
+			}
 			let CLUB = '♣';
 			let DIAMOND = '♦';
 			let HEART = '♥';
@@ -494,7 +499,7 @@ class rule {
 			let PLAYERS = ['N', 'E', 'S', 'W'];
 			let SUITS = [CLUB, DIAMOND, HEART, SPADE];
 			let DENOMINATIONS = [CLUB, DIAMOND, HEART, SPADE, 'NT']
-			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, random_choice, random_int_with_cache, count_previous, get_previous_for_tag, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math});
+			let variables = getVariablesFromCode(this.code, {random_subset, random_int, shuffled_subset, random_order, balanced_sequence, random_choice, random_int_with_cache, count_previous, get_previous_for_tag, bid_to_str, CLUB, DIAMOND, HEART, SPADE, RANKS, PLAYERS, SUITS, DENOMINATIONS, LANG_PHRASES, Math, get_rules});
 			this.random_cache.mark_completed();
 			let split = splitWithMatches(content.content, variable_regex);
 			for (let i = 1; i < split.length; i += 2) { //Alternates between nonmatched part and variable match
@@ -515,6 +520,81 @@ class rule {
 		this.random_cache = new RandomWithCache();
 	}
 };
+
+class rule_with_seed_and_language_wrapper {
+	constructor(rule, seed, language) {
+		this.rule = rule;
+		this.seed = seed;
+		this.language = language;
+	}
+	render() {
+		let ret = this.rule.render(this.seed, this.language);
+		this.seed++;
+		return ret;
+	}
+};
+
+class meta_rule_searcher {
+	constructor(rules, rng, language) {
+		this.rules = rules;
+		this.rng = rng;
+		this.language = language;
+		this.history = [];
+	}
+	get_rules(count, tags_str) { //whitespace separated
+		let tags = tags_str.split(',');
+		for (let i = 0; i < tags.length; ++i) tags[i] = tags[i].trim(); //TODO: ANY tag mode
+		let matching = [];
+		function matches_tag(tag, rule) {
+			if (tag[0] == '-') return !rule.tags.has(tag.slice(1));
+			return rule.tags.has(tag);
+		}
+		function matches(rule) {
+			if (rule.no_meta) return false;
+			for (let tag of tags) if (!matches_tag(tag, rule)) return false;
+			return true;
+		}
+		for (let rule of rules) {
+			if (matches(rule))
+				matching.push(rule);
+		}
+		if (matching.length == 0) throw `No rules matching selector ${tags_str} found`
+		let indices = this.rng.balanced_sequence(count, 0, matching.length - 1);
+		let ret = [];
+		for (let i of indices) {
+			let this_seed = this.rng.random_int(0, BigInt("1000000000000"));
+			this.history.push([matching[i].id, matching[i].version, this_seed]);
+			ret.push(new rule_with_seed_and_language_wrapper(matching[i], this_seed, this.language));
+		}
+		return ret;
+	}
+	get_history() {
+		return this.history;
+	}
+}
+
+class predefined_rule_searcher {
+	constructor(rules, order, lang) {
+		this.rules = rules;
+		this.order = order;
+		this.lang = lang;
+		this.index = 0;
+	}
+	find_rule(id, version) {
+		for (let rule of this.rules) if (rule.id == id && rule.version == version) return rule;
+		throw `No rule with id ${id} and version ${version} found`;
+	}
+	get_rules(count, __tags) { //Process the same rules regardless of tags, updating tags doesn't count as different rule version
+		let ret = [];
+		if (this.index + count > this.order.length) throw `Try to get ${count} more rules (for ${this.index + count} total) while there were only ${this.order.length} expected`;
+		for (let _ = 0; _ < count; ++_) {
+			let [id, version, seed] = this.order[this.index++];
+			ret.push(new rule_with_seed_and_language_wrapper(this.find_rule(id, version), seed, this.language));
+		}
+		return ret;
+	}
+}
+
 
 function parse_suits(s) {
 	let suit_with_cards = /(♣|♦|♥|♠|!c|!d|!h|!s){[AKQJT98765432]+}/;
@@ -594,6 +674,7 @@ function select_rules(rules, rng, count) {
 		let best_score = undefined;
 		let best_ids = [];
 		for (let i = 0; i < N; ++i) {
+			if (rules[i].meta_only) continue;
 			let similar_count = 0;
 			for (let j of similar[i]) similar_count += used_count[j];
 			let this_score = [used_count[i], similar_count, (rules[i].category == 'before' ? used_before : used_after)]; //TODO: Somehow exclude from using too much "special dealing" tag?
@@ -646,7 +727,7 @@ function process_and_store_rules_globally() {
 }
 
 function render(count, seed, lang) {
-	if (hardcoded === undefined) return
+	if (hardcoded === undefined) return;
 	let rules_div = document.querySelector('#rules');
 	let menu_div = document.querySelector('#rules_menu');
 	let rng = new Random(seed);
@@ -656,8 +737,10 @@ function render(count, seed, lang) {
 	for (let i = 0; i < count; ++i) {
 		try {
 			let seed = rng.random_int(0, BigInt("1000000000000"));
-			let content = rules[ids[i]].render(seed, lang);
-			generation_log.push([i, rules[ids[i]].id, rules[ids[i]].version, seed].join(","));
+			let this_meta_rule_searcher = undefined;
+			if (rules[ids[i]].meta) this_meta_rule_searcher = new meta_rule_searcher(rules, new Random(rng.random_int(0, BigInt("1000000000000"))));
+			let content = rules[ids[i]].render(seed, lang, this_meta_rule_searcher);
+			generation_log.push([i, rules[ids[i]].id, rules[ids[i]].version, seed].concat(this_meta_rule_searcher === undefined ? [] : this_meta_rule_searcher.get_history()).join(","));
 			let content_node = document.createElement('div');
 			let board_id = document.createElement('div');
 			board_id.classList.add('board_id');
@@ -726,7 +809,12 @@ function extract_rules_ids_and_versions() {
 	let decoded_rules = decode_rules(chosen_rules);
 	let rules_config = decoded_rules.slice(1);
 	let ret = [];
-	for (let [_i, rule_id, rule_version, _seed] of rules_config) ret.push([rule_id, rule_version]);
+	for (let rule_config of rules_config) {
+		for (let j = 1; j < rule_config.length; j += 3) {
+			let [rule_id, rule_version, _seed] = rule_config.slice(j, j + 3);
+			ret.push([rule_id, rule_version])
+		}
+	}
 	return ret;
 }
 
@@ -743,7 +831,14 @@ function decode_and_display(encoded_rules) { //TODO: some more error handling of
 	
 	let lang = 'EN';
 
-	for (let [i, rule_id, rule_version, seed] of rules_config) {
+	for (let rule_config of rules_config) {
+		let [i, rule_id, rule_version, seed] = rule_config.slice(0, 4);
+		let meta_rule_config = rule_config.slice(4);
+		let order = [];
+		for (let j = 0; j < meta_rule_config.length; j += 3) {
+			order.push(meta_rule_config.slice(j, j + 3));
+		}
+		let this_predefined_rule_searcher = new predefined_rule_searcher(rules, order, lang);
 		i = Number(i);
 		let found_rule = undefined;
 		for (let rule of rules) {
@@ -755,7 +850,7 @@ function decode_and_display(encoded_rules) { //TODO: some more error handling of
 		if (found_rule === undefined) {
 			throw 'Rule ' + rule_id + ' with version ' + rule_version + ' not found';
 		}
-		content[i] = found_rule.render(seed, lang);
+		content[i] = found_rule.render(seed, lang, this_predefined_rule_searcher);
 		caption[i] = 'Board ' + (i + start_board) + ' (' + found_rule.category + (found_rule.special_dealing ? ', requires dealing the cards in a special way' : '') + ')';
 		category[i] = found_rule.category;
 	}
@@ -800,11 +895,11 @@ function init() {
 			hardcoded = [];
 			for (let i = 0; i < file_names.length; ++i)
 				hardcoded.push([file_names[i], content[i]]);
-			let params = new URLSearchParams(document.location.search);
-			let chosen_rules = params.get('chosen_rules');
-			if (chosen_rules !== null) {
-				decode_and_display(chosen_rules);
-			}
+		}
+		let params = new URLSearchParams(document.location.search);
+		let chosen_rules = params.get('chosen_rules');
+		if (chosen_rules !== null) {
+			decode_and_display(chosen_rules);
 		}
 	})
 }
