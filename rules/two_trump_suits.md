@@ -7,7 +7,7 @@
 # CODE
 ```javascript
 suit_names_list = LANG_PHRASES('suit_names').trim().split(' ')
-suit_symbols = ['🦋', '🐘', '🦒', '🐸', '🐢', '🦢', '🧸', '🦆', '🐈', '🐶']
+suit_symbols = ['🐘', '🦒', '🐸', '🐢', '🦢', '🧸', '🦆', '🐈', '🐶', '🐮']
 suits = []
 mode = random_int_with_cache('mode', 0, 4);
 if (mode == 0) {
@@ -56,7 +56,7 @@ for (let i = 0; i < 10; ++i) {
 
 # EN 
 
-- DEFINE `suit_names` butterflies elephants giraffes frogs turtles swans bears ducks kittens puppies
+- DEFINE `suit_names` elephants giraffes frogs turtles swans bears ducks kittens puppies cows
 - DEFINE `minor_suit` minor
 - DEFINE `major_suit` major
 - DEFINE `odd_trump` trump in odd numbered tricks
@@ -69,7 +69,7 @@ In this board the following suits can be bid, each selecting trump separately fo
 &(table)
 
 # PL
-- DEFINE `suit_names` motylki słonie żyrafy żabki żółwie łabędzie misie kaczuszki kotki pieski
+- DEFINE `suit_names` słonie żyrafy żabki żółwie łabędzie misie kaczuszki kotki pieski krówki
 - DEFINE `minor_suit` młodszy
 - DEFINE `major_suit` starszy
 - DEFINE `odd_trump` atu w nieparzystych lewach
