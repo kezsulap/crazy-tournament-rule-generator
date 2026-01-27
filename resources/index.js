@@ -738,7 +738,7 @@ function render(count, seed, lang) {
 		try {
 			let seed = rng.random_int(0, BigInt("1000000000000"));
 			let this_meta_rule_searcher = undefined;
-			if (rules[ids[i]].meta) this_meta_rule_searcher = new meta_rule_searcher(rules, new Random(rng.random_int(0, BigInt("1000000000000"))));
+			if (rules[ids[i]].meta) this_meta_rule_searcher = new meta_rule_searcher(rules, new Random(rng.random_int(0, BigInt("1000000000000"))), lang);
 			let content = rules[ids[i]].render(seed, lang, this_meta_rule_searcher);
 			generation_log.push([i, rules[ids[i]].id, rules[ids[i]].version, seed].concat(this_meta_rule_searcher === undefined ? [] : this_meta_rule_searcher.get_history()).join(","));
 			let content_node = document.createElement('div');
@@ -862,6 +862,12 @@ function decode_and_display(encoded_rules) { //TODO: some more error handling of
 function handleSubmit() {
 	document.querySelector('#menu').style.display = 'none';
 	render(document.querySelector('#number_of_boards').value, document.querySelector('#seed').value, document.querySelector('#lang').value);
+}
+
+function translate() {
+	let board_ids = document.querySelector('.board_id');
+	let rules_contents = document.querySelector('.rule_content');
+	
 }
 
 function init() {
