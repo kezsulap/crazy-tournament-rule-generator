@@ -13,6 +13,8 @@ contracts_list.md 967959200718268 1
 contracts_list_with_lead.md 6615513564407132 1
 cycle_suits_lead.md 26839290439050518 2
 defenders_must_play_trumps.md 97591852315629 1
+deuce_beats_ace.md 6543457255798141 1
+deuce_through_five_beats_ace.md 1614345791389101 1
 different_contracts_ranking.md 9806132048239972 1
 draw_until_13_during_play.md 572454515372247 2
 each_player_lays_down_2_suits.md 64131096084543 1
