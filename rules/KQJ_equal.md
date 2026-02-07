@@ -7,7 +7,7 @@
 
 # EN 
 
-Kings, Queens and Jacks within a suit are considered of equal value, the one which was played the last wins the trick (unless losing to an Ace or a trump)
+Kings, queens and jacks within a suit are considered of equal value, the one which was played the last wins the trick (unless losing to an ace or a trump)
 
 # PL
 

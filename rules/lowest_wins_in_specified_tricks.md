@@ -16,5 +16,5 @@ Lewy numer &(a), &(b) i &(c) bierze najniższa karta w kolorze atutowym, a jeśl
 
 # EN 
 
-Tricks number &(a), &(b) and &(c) are won by the lowest card in the trump suit, or if there are none the lowest card in the suit lead.
+Tricks numbered &(a), &(b) and &(c) are won by the lowest card in the trump suit, or if there are none the lowest card in the suit lead.
 

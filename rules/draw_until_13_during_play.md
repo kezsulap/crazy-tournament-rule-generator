@@ -17,7 +17,7 @@ any cards in the suit lead they play a card of a different suit even if they sti
 all the stacks are exhausted.
 
 # PL
-Po zakończonej licytacji przed pierwszym wistem każdy z graczy oprócz dziadka tasuje swoje karty, bierze losowo &(in_hand) z nich, a pozostałe &(rest) kładzie koszulkami do góry na stosiku.
+Po zakończonej licytacji przed pierwszym wistem każdy z graczy oprócz dziadka tasuje swoje karty, bierze losowe &(in_hand) z nich, a pozostałe &(rest) kładzie koszulkami do góry na stosiku.
 Pierwszy wist następuje jedną z kart, które gracz ma w ręku, po tym wiście dziadek wykłada wszystkie swoje karty, rozgrywający zagrywa jedną z nich zgodnie ze standardowymi regułami, pozostali gracze kiedy
 przychodzi na nich kolej zagrywania mogą zagrać jedynie jedną z kart, które aktualnie mają w ręku. Jeśli nie mają do koloru wśród nich, wówczas nie dokładają do koloru, nawet jeśli w stosiku nadal mają karty w kolorze wyjścia.
 Po zakończonej lewie każdy z graczy dobiera jedną kartę ze swojego stosiku dopóki cały stosik nie zostanie wyczerpany.

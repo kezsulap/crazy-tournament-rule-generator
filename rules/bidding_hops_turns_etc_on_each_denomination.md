@@ -13,8 +13,8 @@ passes_count = random_int_with_cache('passes_count', 5, 8);
 # EN 
 
 - DEFINE `next_player_must_pass` the next player must pass (if they were already forced to pass by their partner doubling earlier on this pass counts too and on their next turn they can bid normally)
-- DEFINE `bidding_continues_as_normal` the bidding continues as usual
-- DEFINE `one_pass_used_up_by_bid` the bidding proceeds as usual, but there's one fewer pass to use
+- DEFINE `bidding_continues_as_normal` the bidding continues normally
+- DEFINE `one_pass_used_up_by_bid` the bidding continues normally, but there's one fewer pass to use
 - DEFINE `bidding_order_reverses` bidding order reverses from clockwise to counter-clockwise (or from counter-clockwise back to clockwise
 - DEFINE `bidding_hops_over` bidding turn skips the next player
 

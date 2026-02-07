@@ -30,7 +30,7 @@ nt_xx_rule_content = nt_xx_rule.render()
 
 # EN 
 
-Depending on the contract denomination and whether it's doubled the following rule will apply in play phase:
+Depending on the contract denomination and whether it's (re)doubled the following rule applies in play phase:
 <table>
 <tr><td></td><td></td><td>X</td><td>XX</td>
 <tr>

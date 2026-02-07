@@ -38,7 +38,7 @@ if (forced_in_suits_other_than_lead) {
 &(rule69)
 
 # PL
-- DEFINE `suit_lead_only` Jeśli gracz ma %a w kolorze wyjścia a w lewie już jest %b lub odwrotnie, to musi ją zagrać. Zasada ta dotyczy jedynie kart w kolorze wyjścia.
-- DEFINE `any_suit` Jeśli gracz ma %a w dowolnym kolorze, a w lewie jest już %b tego samego koloru, lub odwrotnie i gracz może ją zagrać, to musi to zrobić. Jeśli ma więcej niż jedną kartę pasującą do karty już będącej w lewie może wybrać dowolną z nich.
+- DEFINE `suit_lead_only` Jeśli gracz ma %a-kę w kolorze wyjścia a w lewie już jest %b-ka lub odwrotnie, to musi ją zagrać. Zasada ta dotyczy jedynie kart w kolorze wyjścia.
+- DEFINE `any_suit` Jeśli gracz ma %a-kę w dowolnym kolorze, a w lewie jest już %b-ka tego samego koloru, lub odwrotnie i gracz może ją zagrać, to musi to zrobić. Jeśli ma więcej niż jedną kartę pasującą do karty już będącej w lewie może wybrać dowolną z nich.
 
 &(rule69)

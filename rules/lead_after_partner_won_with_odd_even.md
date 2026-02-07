@@ -23,11 +23,11 @@ else {
 - DEFINE `even` even-ranked
 
 On trick one the player on lead is the same as under ordinary rules, on every subsequent trick if the previous trick was won with an &(me_continue) the player who won that trick leads to the next trick, if with an &(partner_continue) their partner does.
-Kings and Jacks are considered odd, Aces and Queens even.
+Kings and jacks are considered odd, aces and queens even.
 
 # PL
 
 - DEFINE `odd` nieparzystą
 - DEFINE `even` parzystą
-W pierwszej lewie wychodzi ten sam gracz, co wg standardowych zasad, w każdej kolejnej jeśli poprzednia lewa została wzięta kartą &(me_continue) wychodzi gracz, który ją wziął, jeśli &(partner_continue) wychodzi jego partner.
-Króle i Walety są nieparzyste, Asy i Damy parzyste.
+W pierwszej lewie wychodzi ten sam gracz, co wg standardowych zasad, w każdej kolejnej jeśli poprzednia lewa została wzięta kartą &(me_continue) wychodzi gracz, który ją wziął, jeśli &(partner_continue) to jego partner.
+Króle i walety są nieparzyste, asy i damy parzyste.

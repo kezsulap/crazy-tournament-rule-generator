@@ -6,7 +6,7 @@
 
 # EN 
 
-On this board apart from 5 standard denominations it's also possible to bid "NO TRICKS" which is higher than no trump, scores like no trump, contract of X NO TRICKS is to force opponents to make at least 6 + X tricks, getting your 
+On this board apart from 5 standard denominations it's also possible to bid "NO TRICKS" which is ranked higher than no trump and scores like no trump. Contract of X NO TRICKS is to force opponents to make at least 6 + X tricks, getting your 
 opponents to take more counts like overtricks, to take fewer like undertricks
 
 # PL

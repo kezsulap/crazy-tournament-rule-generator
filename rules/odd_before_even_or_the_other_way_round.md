@@ -16,11 +16,11 @@ else card_parity = LANG_PHRASES('even_card')
 - DEFINE `even_card` an even-ranked card
 
 Every player whenever possible must play &(card_parity)
-Kings and Jacks are considered odd, Aces and Queens even.
+Kings and jacks are considered odd, aces and queens even.
 
 # PL
 - DEFINE `odd_card` kartę nieparzystą
 - DEFINE `even_card` kartę parzystą
 
-Każdy gracz dopóki ma taką możliwość musi zagrać &(card_parity).
-Króle i Walety są nieparzyste, Asy i Damy parzyste.
+Każdy gracz zawsze jeśli ma taką możliwość musi zagrać &(card_parity).
+Króle i walety są nieparzyste, asy i damy parzyste.

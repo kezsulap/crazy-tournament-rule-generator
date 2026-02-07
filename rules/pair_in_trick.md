@@ -13,9 +13,9 @@ If a trick contains 3 or 4 cards of the same rank, or 2 pairs it still counts as
 
 # PL
 
-Jeśli rozgrywający lub dziadek weźmie lewę zawierającą co najmniej dwa asy, co najmniej dwa króle, co najmniej dwie damy, lub co najmniej dwa walety, to łączna liczba lew wzięta przez rozgrywającego zostaje dodatkowo
-zwiększona o 1, jeśli obrońcy, to zmniejszona o 1.
+Za każdym razem kiedy rozgrywający lub dziadek bierze lewę zawierającą co najmniej dwa asy, co najmniej dwa króle, co najmniej dwie damy, lub co najmniej dwa walety, to łączna liczba lew wzięta przez rozgrywającego zostaje dodatkowo
+zwiększona o 1, kiedy obrońcy biorą, to zmniejszona o 1.
 
 Jeśli końcowa liczba lew wziętych przez rozgrywającego będzie większa od 13, to przyjmujemy, że wziął 13 lew, jeśli mniejsza niż 0, to że wziął 0.
 
-Jeśli lewa zawiera 3 lub 4 figury tej samej wysokości, lub dwie pary, wciąż jest liczona raz.
+Jeśli lewa zawiera 3 lub 4 figury tej samej wysokości, lub dwie pary, mimo to jest liczona raz.

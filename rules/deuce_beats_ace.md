@@ -15,6 +15,6 @@ This only applies if the 2 was played after the ace, if the 2 was played before 
 # PL
 
 Jeżeli w lewie zostanie zagrany as, a następnie 2 w tym samym kolorze, to dwójka staje się najwyższą kartą tego koloru do końca lewy i nie może zostać pobita przez żadną inną kartę tego koloru.
-Przebijanie atutem i nadbijanie działają normalnie; jednak jeśli zostanie zagrany as atutowy, a następnie dwójka atutowa, dwójka staje się najwyższym atutem w tej lewie i nie może zostać nadbita
+Przebijanie i nadbijanie działają normalnie, jednak jeśli zostanie zagrany as atutowy, a następnie dwójka atutowa, to dwójka staje się najwyższym atutem w tej lewie i nie może zostać nadbita
 
-Działa to tylko jeśli dwójka była zagrana po asie, jeśli była zagrana wcześniej, to lewę bierze as (jeśli nie został przebity atutem).
+Zasada ta obowiązuje tylko jeśli dwójka była zagrana po asie, jeśli była zagrana wcześniej, to lewę bierze as (jeśli nie został przebity atutem).

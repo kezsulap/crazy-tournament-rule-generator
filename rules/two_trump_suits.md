@@ -59,12 +59,12 @@ for (let i = 0; i < 10; ++i) {
 - DEFINE `suit_names` elephants giraffes frogs turtles swans bears ducks kittens puppies cows
 - DEFINE `minor_suit` minor
 - DEFINE `major_suit` major
-- DEFINE `odd_trump` trump in odd numbered tricks
-- DEFINE `even_trump` trump in even numbered tricks
+- DEFINE `odd_trump` trump in odd-numbered tricks
+- DEFINE `even_trump` trump in even-numbered tricks
 - DEFINE `scoring` scoring as if played in
 - DEFINE `nt` NT
 
-In this board the following suits can be bid, each selecting trump separately for first and every subsequent odd trick and for second and every subsequent even trick.
+In this board the following suits can be bid, each choosing trump separately for first and every subsequent odd-numbered trick and for second and every subsequent even-numbered trick.
 
 &(table)
 
@@ -72,7 +72,11 @@ In this board the following suits can be bid, each selecting trump separately fo
 - DEFINE `suit_names` słonie żyrafy żabki żółwie łabędzie misie kaczuszki kotki pieski krówki
 - DEFINE `minor_suit` młodszy
 - DEFINE `major_suit` starszy
-- DEFINE `odd_trump` atu w nieparzystych lewach
-- DEFINE `even_trump` atu w parzystych lewach
+- DEFINE `odd_trump` atu w lewach nieparzystych
+- DEFINE `even_trump` atu w lewach parzystych
 - DEFINE `scoring` punktacja jak za grę w
 - DEFINE `nt` NT
+
+W tym rozdaniu można licytować następujące miana, każde z nich oznacza wybór koloru atutowego osobno dla pierwszej i każdej kolejnej nieparzystej oraz osobno dla drugiej i każdej kolejnej parzystej lewy.
+
+&(table)

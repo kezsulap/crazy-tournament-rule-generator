@@ -64,8 +64,9 @@ for (let [level, denomination, declarer, doubled] of contracts_array) {
 
 # EN 
 
-Only the following contracts can be played, with the following card, lead in trick 1. Beginning from the dealer going clockwise each player crosses out one of the contracts, once there's only one left, that's the final contract,
-if it's not PASSed out whoever has the card chosen leads it on trick 1, the partner of the chosen declarer lays the dummy as usual and the play continues as usual.
+Only the following contracts can be played, with the following card, lead in trick 1.
+Starting from the dealer and going clockwise each player crosses out one of the remaining contracts, once there's only one left, that's the final contract,
+if it's not PASSed out whoever holds the card chosen leads it on trick 1, the partner of the chosen declarer lays down the dummy and the play continues as usual.
 
 &(contracts)
 

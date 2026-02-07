@@ -18,5 +18,5 @@ If the trick contains &(turn_english_article) &(turn) from the next trick onward
 If there's an even number of &(turn)s in one trick they cancel out and the subsequent tricks proceed normally.
 
 # PL
-Jeśli w lewie zostaje zagrana zostaje &(turn) od następnej lewy karty zagrywane są w kierunku przeciwnym niż do tej pory, przeciwnie do ruchu wskazówek zegara jeśli do tej pory były zgodnie, lub odwrotnie.
+Jeśli w lewie zostaje zagrana zostaje &(turn)-ka od następnej lewy karty zagrywane są w kierunku przeciwnym niż do tej pory, przeciwnie do ruchu wskazówek zegara jeśli do tej pory były zgodnie, lub odwrotnie.
 Jeśli w lewie znajduje się parzysta liczba &(turn)-ek to się wzajemnie znoszą i w następnej lewie dokładamy karty w tej samej kolejności co do tej pory.

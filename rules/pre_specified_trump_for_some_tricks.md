@@ -17,6 +17,6 @@ W pozostałych lewach atu jest takie jak wynika z miana kontraktu.
 
 # EN 
 
-Regardless of contract denomination in trick number &(a) ♣ are the trump suit, in trick number &(b) it's ♦, in &(c) ♥, in &(d) ♠, and in trick &(e) there are no trumps
+Regardless of contract denomination in the trick number &(a) ♣ are the trump suit, in trick number &(b) it's ♦, in &(c) ♥, in &(d) ♠, and in the trick &(e) there are no trumps
 
 In all other tricks the trump suit is the suit chosen as contract denomination.

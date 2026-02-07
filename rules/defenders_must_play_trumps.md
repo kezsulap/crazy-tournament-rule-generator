@@ -5,7 +5,7 @@
 
 # EN 
 
-On this hand bidding no trump is not allowed, during play both defenders whenever possible are forced to play a trump.
+On this hand bidding no trump is not allowed, during the play phase both defenders whenever possible must play a trump.
 
 # PL
 

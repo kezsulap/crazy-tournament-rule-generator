@@ -18,7 +18,7 @@ nt_rule_content = nt_rule.render()
 
 # EN 
 
-Depending on the contract denomination the following rule will apply in play phase:
+Depending on the contract denomination the following rule applies in play phase:
 <table>
 <tr><td>♣</td><td>&(club_rule_content)</td></tr>
 <tr><td>♦</td><td>&(diamond_rule_content)</td></tr>

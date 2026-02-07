@@ -6,7 +6,7 @@
 
 # EN 
 
-On the first and every subsequent odd trick the highest card (in trump suit or suit lead) wins, on the second and every subsequent even the lowest card wins.
+The first and every subsequent odd-numbered trick is won by the highest card (in trump suit or suit lead), the second and every subsequent even-numbered by the lowest.
 
 # PL
 

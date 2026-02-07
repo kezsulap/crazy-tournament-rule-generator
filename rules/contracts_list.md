@@ -59,14 +59,14 @@ for (let [level, denomination, declarer, doubled] of contracts_array) {
 
 # EN 
 
-Only the following contracts can be played, beginning from the dealer going clockwise each player crosses out one of the contracts, once there's only one left, that's the final contract and the play phase
+Only the following contracts can be played, starting from the dealer and going clockwise each player crosses out one of the remaining contracts, once there's only one left, that's the final contract and the play phase
 begins as usual:
 
 &(contracts)
 
 # PL
 
-Możliwa jest rozgrywka jedynie poniższych kontraktów, zaczynając od dealera, idąc zgodnie z ruchem wskazówek zegara gracze wykreślają po jednym kontrakcie, kiedy zostanie tylko jeden kontrakt staje się on
+Możliwa jest rozgrywka jedynie poniższych kontraktów, zaczynając od dealera, idąc zgodnie z ruchem wskazówek zegara gracze wykreślają po jednym z pozostałych kontraktów, kiedy zostanie tylko jeden kontrakt staje się on
 kontraktem ostatecznym i przystępujemy do rozgrywki zgodnie ze standardowymi zasadami:
 
 &(contracts)

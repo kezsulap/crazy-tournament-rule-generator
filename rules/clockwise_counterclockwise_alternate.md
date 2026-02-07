@@ -7,7 +7,7 @@
 
 # EN 
 
-In first and every subsequent odd tricks cards are played in clockwise order, in every even in counterclockwise
+In the first and every subsequent odd-numbered trick the cards are played in clockwise order, in every even-numbered in counterclockwise.
 
 # PL
 
