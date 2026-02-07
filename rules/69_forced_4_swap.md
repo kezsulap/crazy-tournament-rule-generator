@@ -48,16 +48,16 @@ if (forced_in_suits_other_than_lead) {
 
 # EN 
 - DEFINE `suit_lead_only` If a player has %EN_article %a in the suit lead and the trick already contains %b of the same suit or the other way round, they must play it. This rule only applies to cards in the suit lead.
-- DEFINE `any_suit` If a player has %EN_article %a in any suit and the trick already contains %b of the same suit or the other way round and the player can play it they must.
+- DEFINE `any_suit` If a player has %EN_article %a in any suit and the trick already contains %b of the same suit or the other way round and the player can play it they must. If they have multiple cards matching a card already in the trick they can choose any of them.
 
 &(rule69)
 
 If the trick contains &(turn_english_article) &(turn) from the next trick onwards the order of playing cards reverses from clockwise to counter-clockwise or the other way round.
-If there's an even number of &(turn)s in one trick they cancel out and the next tricks proceeds normally.
+If there's an even number of &(turn)s in one trick they cancel out and the subsequent tricks proceed normally.
 
 # PL
 - DEFINE `suit_lead_only` Jeśli gracz ma %a w kolorze wyjścia a w lewie już jest %b lub odwrotnie, to musi ją zagrać. Zasada ta dotyczy jedynie kart w kolorze wyjścia.
-- DEFINE `any_suit` Jeśli gracz ma %a w dowolnym kolorze, a w lewie jest już karta %b tego samego koloru, lub odwrotnie i gracz może ją zagrać, to musi to zrobić.
+- DEFINE `any_suit` Jeśli gracz ma %a w dowolnym kolorze, a w lewie jest już %b tego samego koloru, lub odwrotnie i gracz może ją zagrać, to musi to zrobić. Jeśli ma więcej niż jedną kartę pasującą do karty już będącej w lewie może wybrać dowolną z nich.
 
 &(rule69)
 
