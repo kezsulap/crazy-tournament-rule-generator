@@ -40,6 +40,6 @@
 
 - DEFINE `phrase_id` phrase_content, need to define the same phrase in all language versions
 
-Description of rule in English using &(a) syntax for pasting value of variable a set as global in the CODE if applicable
+Description of rule in English using &(a) syntax for pasting value of a variable set as global in the CODE section if applicable
 
 # Other language versions (optional)
