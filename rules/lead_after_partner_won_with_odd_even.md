@@ -2,7 +2,7 @@
 - id = 14943957936700715 
 - version = 2
 - category = after
-- similar rules = 1275320882719
+- similar rules = 1275320882719, 690405622575, 053667288881
 - tags = minor_play
 
 # CODE
